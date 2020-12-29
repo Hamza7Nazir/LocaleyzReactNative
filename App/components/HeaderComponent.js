@@ -1,18 +1,31 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 
 const HeaderComponent = () => {
   return (
-    <View>
-        <Text style={style.iconStyle}>This is HeaderComponent</Text>
-
+    <View style= {style.parentStyle}>
+      <Image 
+      style={style.imageStyle}
+      source= {require('../assets/local.jpg')} />
+      <Text style= {style.textStyle}>Localeyz</Text>
     </View>
   );
 };
 const style = StyleSheet.create({
-    iconStyle: {
-    height: 250,
-    width: 250
+  imageStyle: {
+    height: 30,
+    width: 30,
+  },
+  parentStyle: {
+      alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'center'
+  },
+  textStyle: {
+      fontFamily: 'sans-serif-condensed',
+      fontSize: 30,
+      fontWeight: 'bold'
   }
 });
+
 export default HeaderComponent;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './App/screens/HomeScreen';
-import Icon from "./App/components/iconComponent";
+import Header from "./App/components/HeaderComponent";
 
 const Stack = createStackNavigator();
 
@@ -12,7 +12,7 @@ const  MyStack = () => {
       <Stack.Screen name="Home" component={HomeScreen}  
       options = {
         // eslint-disable-next-line react/display-name
-        { headerTitle: props => <Icon {...props}/>,
+        { headerTitle: props => <Header {...props}/>,
         headerStyle: {
           backgroundColor: '#ffff',
         },

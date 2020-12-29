@@ -1,3 +1,5 @@
+/* eslint-disable react-native/no-color-literals */
+/* eslint-disable react-native/sort-styles */
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {View, StyleSheet,Text, Image,TouchableOpacity} from 'react-native';
