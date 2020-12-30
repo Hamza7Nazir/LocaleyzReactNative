@@ -1,5 +1,3 @@
-/* eslint-disable react-native/no-color-literals */
-/* eslint-disable react-native/sort-styles */
 import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
@@ -8,9 +6,11 @@ const CenterComponent = () => {
   return (
     <View style={style.parentStyle}>
       <TouchableOpacity>
-        <Image style={style.imageStyle} source={require('../assets/af.jpg')} />
+        <Image
+          style={style.imageStyle}
+          source={require('../../assets/images/af.jpg')}
+        />
       </TouchableOpacity>
-
       <TouchableOpacity>
         <View style={style.touchableParentStyle}>
           <Text style={style.textStyle}>Find a Center </Text>
@@ -28,8 +28,6 @@ const style = StyleSheet.create({
     marginHorizontal: 15, // will be kept same for all components
     marginBottom: 15,
   },
-  // eslint-disable-next-line react-native/sort-styles
-  // eslint-disable-next-line react-native/no-color-literals
   imageStyle: {
     borderColor: '#34b7eb',
     borderRadius: 45,
@@ -37,12 +35,10 @@ const style = StyleSheet.create({
     height: 50,
     width: 50,
   },
-  // eslint-disable-next-line react-native/no-color-literals
   iconStyle: {
     color: '#34b7eb',
     fontSize: 20,
   },
-  // eslint-disable-next-line react-native/no-color-literals
   touchableParentStyle: {
     alignItems: 'center',
     borderColor: '#34b7eb',

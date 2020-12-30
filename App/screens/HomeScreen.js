@@ -1,16 +1,18 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import CenterComponent from "../components/CenterComponent";
-import LatestEpisodeComponent from '../components/LatestEpisodeComponent'
-
+import CenterComponent from '../components/FindCenter/CenterComponent';
+import FontTelloIcon from '../components/FontTelloIcon';
+import LatestEpisodeComponent from '../components/LatestEpisode/LatestEpisodeComponent';
+import LiveNowComponent from '../components/LiveNow/LiveNowComponent';
 
 const HomeScreen = () => {
   return (
     <View>
       <Text style={style.headingStyle}>Your recent picks</Text>
-      <CenterComponent/>
-      <LatestEpisodeComponent/>
-    
+      <CenterComponent />
+      <LatestEpisodeComponent />
+      <LiveNowComponent />
+      <FontTelloIcon name={'signal'} color={'#000'} size={35} />
     </View>
   );
 };
@@ -20,8 +22,7 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     marginHorizontal: 15,
     marginVertical: 15,
-  }
- 
+  },
 });
 
 export default HomeScreen;
