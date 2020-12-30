@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import CenterComponent from '../components/FindCenter/CenterComponent';
-import FontTelloIcon from '../components/FontTelloIcon';
+// import FontTelloIcon from '../components/FontTelloIcon';
 import LatestEpisodeComponent from '../components/LatestEpisode/LatestEpisodeComponent';
 import LiveNowComponent from '../components/LiveNow/LiveNowComponent';
 
@@ -12,7 +12,7 @@ const HomeScreen = () => {
       <CenterComponent />
       <LatestEpisodeComponent />
       <LiveNowComponent />
-      {/* <FontTelloIcon name={'signal'} color={'#000'} size={35} /> */}
+      {/* <FontTelloIcon name={'glass'} color={'#3496eb'} size={35} /> */}
     </View>
   );
 };
