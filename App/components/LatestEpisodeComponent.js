@@ -12,12 +12,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const LatestEpisodeComponent = () => {
   const channelList = [
-    {title: 'Grey Cat', imageUrl: require('../assets/cat.jpg')},
+    {title: 'Grey Cat sorry its golden', imageUrl: require('../assets/cat.jpg')},
     {title: 'White Cat', imageUrl: require('../assets/cat2.jpg')},
     {title: 'Brown Cat', imageUrl: require('../assets/cat3.jpg')},
     {title: 'Big Cat', imageUrl: require('../assets/tiger1.jpg')},
     {title: 'Russion', imageUrl: require('../assets/tank2.jpg')},
-    {title: 'King Cat', imageUrl: require('../assets/tiger1.jpg')},
+    {title: 'King Cat is very very very big', imageUrl: require('../assets/tiger1.jpg')},
   ];
 
   return (
@@ -45,7 +45,7 @@ const LatestEpisodeComponent = () => {
                   style={style.iconOnImageStyle}
                   source={require('../assets/af.jpg')}
                 />
-                <Text style={style.listTextStyle}>{item.title}</Text>
+                <Text numberOfLines={2} ellipsizeMode='tail' style={style.listTextStyle}>{item.title}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -88,6 +88,8 @@ const style = StyleSheet.create({
   listTextStyle: {
     fontSize: 18,
     fontWeight: 'bold',
+    width: 100
+    
   },
   parentStyle: {
     marginHorizontal: 15,
