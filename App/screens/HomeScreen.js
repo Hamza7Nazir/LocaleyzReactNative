@@ -12,7 +12,7 @@ const HomeScreen = () => {
       <CenterComponent />
       <LatestEpisodeComponent />
       <LiveNowComponent />
-      <FontTelloIcon name={'signal'} color={'#000'} size={35} />
+      {/* <FontTelloIcon name={'signal'} color={'#000'} size={35} /> */}
     </View>
   );
 };

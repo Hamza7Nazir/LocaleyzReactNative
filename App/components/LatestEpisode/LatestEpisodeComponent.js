@@ -1,14 +1,6 @@
-/* eslint-disable react-native/no-color-literals */
 import React from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-} from 'react-native';
-import style from "./style";
+import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
+import style from './style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const LatestEpisodeComponent = () => {
@@ -63,6 +55,5 @@ const LatestEpisodeComponent = () => {
     </View>
   );
 };
-
 
 export default LatestEpisodeComponent;
