@@ -14,7 +14,6 @@ export default StyleSheet.create({
   liveText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginLeft: 15,
   },
   videoStyle: {
     borderRadius: 5,
@@ -30,17 +29,7 @@ export default StyleSheet.create({
     left: 0,
     margin: 5,
     position: 'absolute',
-    top: 130,
-    color: '#fff',
-  },
-  listTextDetailStyle: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    width: videoAndTextWidth,
-    left: 0,
-    margin: 5,
-    position: 'absolute',
-    top: 165,
+    top: 140,
     color: '#fff',
   },
   iconOnImageStyle: {
@@ -65,7 +54,7 @@ export default StyleSheet.create({
   },
   parentStyle: {
     marginHorizontal: 15,
-    marginTop: 90,
+    marginTop: 55,
     marginBottom: 20,
   },
 });
