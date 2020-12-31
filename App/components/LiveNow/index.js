@@ -4,23 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import style from './style';
 import Video from 'react-native-video';
 
-
-const LiveNowComponent = () => {
-  const videos = [
-    {
-      title: 'Telvue Connect HLS Invisible now',
-      videoUrl: require('../../assets/images/earthmoving.mp4'),
-    },
-    {
-      title: 'Access Framingham Invisible now',
-      videoUrl: require('../../assets/images/earthmoving.mp4'),
-    },
-    {
-      title: 'Silver Cat Video',
-      videoUrl: require('../../assets/images/silvercat.mov'),
-    },
-  ];
-
+const LiveNowComponent = ({onPress, videos}) => {
   return (
     <View style={style.parentStyle}>
       <View style={style.headingStyle}>
@@ -33,12 +17,12 @@ const LiveNowComponent = () => {
       </View>
       <FlatList
         data={videos}
-        keyExtractor={(videos) => videos.title}
+        keyExtractor={(video) => video.title}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => onPress(item.key)}>
               <View>
                 <Video style={style.videoStyle} source={item.videoUrl} />
                 <View style={style.iconViewStyle}>

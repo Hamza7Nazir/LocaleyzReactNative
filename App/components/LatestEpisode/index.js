@@ -3,22 +3,7 @@ import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import style from './style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const LatestEpisodeComponent = () => {
-  const channelList = [
-    {
-      title: 'Grey Cat sorry its golden',
-      imageUrl: require('../../assets/images/cat.jpg'),
-    },
-    {title: 'White Cat', imageUrl: require('../../assets/images/cat2.jpg')},
-    {title: 'Brown Cat', imageUrl: require('../../assets/images/cat3.jpg')},
-    {title: 'Big Cat', imageUrl: require('../../assets/images/tiger1.jpg')},
-    {title: 'Russion', imageUrl: require('../../assets/images/tank2.jpg')},
-    {
-      title: 'King Cat is very very very big',
-      imageUrl: require('../../assets/images/tiger1.jpg'),
-    },
-  ];
-
+const LatestEpisodeComponent = ({channelList, onPress}) => {
   return (
     <View style={style.parentStyle}>
       <View style={style.headingStyle}>
@@ -37,7 +22,7 @@ const LatestEpisodeComponent = () => {
         keyExtractor={(obj) => obj.title}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => onPress(item.key)}>
               <View style={style.listBlockStyle}>
                 <Image style={style.imageStyle} source={item.imageUrl} />
                 <Image

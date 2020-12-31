@@ -2,7 +2,8 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './App/screens/HomeScreen';
-import Header from './App/components/Header/HeaderComponent';
+import Header from './App/components/Header';
+import VideoScreen from './App/screens/VideoScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const MyStack = () => {
           headerTintColor: 'black',
         }}
       />
+      <Stack.Screen name="Video" component={VideoScreen} />
     </Stack.Navigator>
   );
 };
