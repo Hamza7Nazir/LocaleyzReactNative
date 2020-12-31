@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {ScrollView, View, Text, StyleSheet} from 'react-native';
 import CenterComponent from '../components/FindCenter/CenterComponent';
 // import FontTelloIcon from '../components/FontTelloIcon';
 import LatestEpisodeComponent from '../components/LatestEpisode/LatestEpisodeComponent';
@@ -7,13 +7,13 @@ import LiveNowComponent from '../components/LiveNow/LiveNowComponent';
 
 const HomeScreen = () => {
   return (
-    <View>
+    <ScrollView>
+      {/* <FontTelloIcon name={'home'} color={'#000'} size={35} /> */}
       <Text style={style.headingStyle}>Your recent picks</Text>
       <CenterComponent />
       <LatestEpisodeComponent />
       <LiveNowComponent />
-      {/* <FontTelloIcon name={'glass'} color={'#3496eb'} size={35} /> */}
-    </View>
+    </ScrollView>
   );
 };
 const style = StyleSheet.create({

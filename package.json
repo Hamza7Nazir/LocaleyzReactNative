@@ -1,9 +1,4 @@
 {
-  "rnpm": {
-    "assets": [
-      "App/assets/fonts"
-    ]
-  },
   "name": "Localiez",
   "version": "0.0.1",
   "private": true,
