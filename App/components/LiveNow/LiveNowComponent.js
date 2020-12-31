@@ -1,16 +1,9 @@
 import React from 'react';
-import {
-  View,
-  Image,
-  Text,
-  ScrollView,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Image, Text, FlatList, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import style from './style';
 import Video from 'react-native-video';
-import VideoIconComponent from "../VideoIcon/VideoIconComponent";
+
 
 const LiveNowComponent = () => {
   const videos = [
