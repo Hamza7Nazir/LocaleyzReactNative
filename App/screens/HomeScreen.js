@@ -2,7 +2,7 @@ import React from 'react';
 import {ScrollView, Text, StyleSheet} from 'react-native';
 import CenterComponent from '../components/FindCenter';
 
-import {LatestEpisode, LiveNow, LiveRadio} from '../components';
+import {LatestEpisode, LiveNow, Heading, PodcastEpisode} from '../components';
 import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
@@ -11,15 +11,27 @@ const HomeScreen = () => {
     {
       key: 4,
       title: 'Brown Cat',
+      detail: 'Yo tengo un FX Yo quiero dos FX',
       imageUrl: require('../assets/images/cat3.jpg'),
     },
     {
       key: 5,
       title: 'Big Cat',
+      detail: 'Yo come pan',
       imageUrl: require('../assets/images/tiger1.jpg'),
     },
-    {key: 6, title: 'Cat', imageUrl: require('../assets/images/cat2.jpg')},
-    {key: 7, title: 'Snap', imageUrl: require('../assets/images/snap.png')},
+    {
+      key: 6,
+      title: 'Cat',
+      detail: 'Yo come una manzana',
+      imageUrl: require('../assets/images/cat2.jpg'),
+    },
+    {
+      key: 7,
+      title: 'Snap',
+      detail: 'Important',
+      imageUrl: require('../assets/images/snap.png'),
+    },
   ];
   const videos = [
     {
@@ -59,10 +71,56 @@ const HomeScreen = () => {
       videoUrl: require('../assets/images/earthmoving.mp4'),
     },
   ];
+
+  const podcastList = [
+    {
+      key: 11,
+      title: 'Theater in the Rouch - December this year',
+      detail: 'Yo quiero una manazana',
+      imageUrl: require('../assets/images/cat.jpg'),
+    },
+    {
+      key: 12,
+      title: '458 - SPACEHEADS 2020 VEHCILE ',
+      detail: 'Yo quiero una manazana',
+      imageUrl: require('../assets/images/cat3.jpg'),
+    },
+    {
+      key: 13,
+      detail: 'Debunking the myth of Historical Events',
+      title: 'Flat Earth Invisible now',
+      imageUrl: require('../assets/images/tiger1.jpg'),
+    },
+    {
+      key: 14,
+      detail: 'Alpha Bravo Charlie',
+      title: 'Lorem Ipsum meow meow',
+      imageUrl: require('../assets/images/cat3.jpg'),
+    },
+    {
+      key: 15,
+      detail: 'Alpha Bravo Charlie',
+      title: 'Lorem Ipsum Lorem  Yo',
+      imageUrl: require('../assets/images/tank2.jpg'),
+    },
+    {
+      key: 16,
+      detail: 'Alpha Bravo Charlie',
+      title: 'Yo tengo un Gato',
+      imageUrl: require('../assets/images/cat2.jpg'),
+    },
+  ];
+
   return (
     <ScrollView>
+      {/* <Main Heading */}
       <Text style={style.headingStyle}>Your recent picks</Text>
+
+      {/* Center Component */}
       <CenterComponent />
+
+      {/* Latest Espisode section below */}
+      <Heading iconName="videocam-1" headingName="Latest espisodes" />
       <LatestEpisode
         channelList={channelList}
         onPress={(id) => {
@@ -70,9 +128,9 @@ const HomeScreen = () => {
           console.log('id:: ', id);
         }}
       />
+      {/* Live Now Section below */}
+      <Heading iconName="videocam-1" headingName="Live Now" />
       <LiveNow
-        iconName="videocam-1"
-        headingName="Live now"
         channelName="Channel5"
         videos={videos}
         onPress={(id) => {
@@ -80,11 +138,19 @@ const HomeScreen = () => {
           console.log(id);
         }}
       />
+      {/* Live Radio Section below */}
+      <Heading iconName="signal" headingName="Live Radio" />
       <LiveNow
-        iconName="signal"
-        headingName="Live Radio"
         channelName="106.5 FM"
         videos={radios}
+        onPress={(id) => {
+          navigation.navigate('Video', {id: id});
+          console.log(id);
+        }}
+      />
+      <Heading iconName="signal" headingName="Latest podcast espisodes" />
+      <PodcastEpisode
+        podcastList={podcastList}
         onPress={(id) => {
           navigation.navigate('Video', {id: id});
           console.log(id);

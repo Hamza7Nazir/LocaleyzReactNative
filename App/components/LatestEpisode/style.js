@@ -36,8 +36,12 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     width: 100,
   },
+  listDetailStyle: {
+    width: 100,
+    color: '#9c9991',
+  },
   parentStyle: {
     marginHorizontal: 15,
-    marginTop: 20,
+    marginBottom: 90,
   },
 });

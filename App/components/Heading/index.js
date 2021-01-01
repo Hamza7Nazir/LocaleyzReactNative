@@ -1,22 +1,21 @@
 import React from 'react';
-import {View, Image, Text, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import FontTelloIcon from '../../components/FontTelloIcon';
 import style from './style';
-
-const LiveRadio = () => {
+const Heading = ({iconName, headingName}) => {
   return (
     <View style={style.parentStyle}>
       <View style={style.headingStyle}>
         <FontTelloIcon
           style={style.iconCameraStyle}
-          name={'signal'}
+          name={iconName}
           color={'#000'}
           size={35}
         />
-
-        <Text style={style.liveText}>Live Radio</Text>
+        <Text style={style.liveText}>{headingName}</Text>
       </View>
     </View>
   );
 };
-export default LiveRadio;
+
+export default Heading;

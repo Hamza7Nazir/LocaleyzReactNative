@@ -1,20 +1,10 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import style from './style';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const LatestEpisodeComponent = ({channelList, onPress}) => {
   return (
     <View style={style.parentStyle}>
-      <View style={style.headingStyle}>
-        <Ionicons
-          name={'videocam-outline'}
-          style={style.iconCameraStyle}
-          light
-        />
-        <Text style={style.episodeText}>Latest episodes</Text>
-      </View>
-
       <FlatList
         data={channelList}
         horizontal
@@ -29,8 +19,11 @@ const LatestEpisodeComponent = ({channelList, onPress}) => {
                   style={style.iconOnImageStyle}
                   source={require('../../assets/images/af.jpg')}
                 />
-                <Text numberOfLines={2} style={style.listTextStyle}>
+                <Text numberOfLines={1} style={style.listTextStyle}>
                   {item.title}
+                </Text>
+                <Text numberOfLines={2} style={style.listDetailStyle}>
+                  {item.detail}
                 </Text>
               </View>
             </TouchableOpacity>

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginHorizontal: 15, // will be kept same for all components
-    marginBottom: 15,
+    marginBottom: 35,
   },
   imageStyle: {
     borderColor: '#34b7eb',

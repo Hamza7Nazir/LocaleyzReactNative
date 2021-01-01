@@ -4,13 +4,15 @@ import Header from './Header';
 import LatestEpisode from './LatestEpisode';
 import LiveNow from './LiveNow';
 import BottomNavigationTab from './BottomNavigationTab';
-import LiveRadio from './LiveRadio';
+import Heading from './Heading';
+import PodcastEpisode from './PodcastEpisode';
 export {
   FindCenter,
   FontTelloIcon,
   Header,
   LatestEpisode,
   LiveNow,
-  LiveRadio,
+  Heading,
+  PodcastEpisode,
   //   BottomNavigationTab,
 };

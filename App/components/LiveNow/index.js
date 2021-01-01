@@ -1,28 +1,11 @@
 import React from 'react';
 import {View, Image, Text, FlatList, TouchableOpacity} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import FontTelloIcon from '../../components/FontTelloIcon';
 import style from './style';
 import Video from 'react-native-video';
 
-const LiveNowComponent = ({
-  onPress,
-  videos,
-  iconName,
-  headingName,
-  channelName,
-}) => {
+const LiveNowComponent = ({onPress, videos, channelName}) => {
   return (
     <View style={style.parentStyle}>
-      <View style={style.headingStyle}>
-        <FontTelloIcon
-          style={style.iconCameraStyle}
-          name={iconName}
-          color={'#000'}
-          size={35}
-        />
-        <Text style={style.liveText}>{headingName}</Text>
-      </View>
       <FlatList
         data={videos}
         keyExtractor={(video) => video.title}
@@ -42,9 +25,10 @@ const LiveNowComponent = ({
                 </View>
                 <Text numberOfLines={1} style={style.listTextStyle}>
                   {item.title}
-                  
                 </Text>
-                <Text style={style.listTextDetailStyle}>{item.detail}</Text>
+                <Text numberOfLines={2} style={style.listTextDetailStyle}>
+                  {item.detail}
+                </Text>
               </View>
             </TouchableOpacity>
           );
