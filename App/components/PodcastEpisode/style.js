@@ -34,8 +34,8 @@ export default StyleSheet.create({
     width: 280,
   },
   iconCameraStyle: {
-    fontSize: 500,
-    margin: 100,
+    paddingLeft: 20,
+    marginLeft: 15,
   },
   ifViewStyle: {
     margin: 50,

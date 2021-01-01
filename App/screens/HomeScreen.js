@@ -133,7 +133,7 @@ const HomeScreen = () => {
         }}
       />
       {/* Live Now Section below */}
-      <Heading iconName="signal" headingName="Live Now" />
+      <Heading iconName="videocam-1" headingName="Live Now" />
       <LiveNow
         channelName="Channel5"
         emptyMessage="Live episodes"
@@ -144,7 +144,7 @@ const HomeScreen = () => {
         }}
       />
       {/* Live Radio Section below */}
-      <Heading iconName="signal" headingName="Live Radio" />
+      <Heading iconName="videocam-1" headingName="Live Radio" />
       <LiveNow
         channelName="106.5 FM"
         emptyMessage="Radios"

@@ -16,5 +16,5 @@ export {
   Heading,
   PodcastEpisode,
   NotFound,
-  //   BottomNavigationTab,
+  BottomNavigationTab,
 };

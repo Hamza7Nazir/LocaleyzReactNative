@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
+import FontTelloIcon from '../../components/FontTelloIcon';
 import NotFound from '../NotFound';
 import style from './style';
 
@@ -25,6 +26,9 @@ const PodcastEpisode = ({podcastList, onPress}) => {
                   <Text numberOfLines={1} style={style.detailStyle}>
                     {item.detail}
                   </Text>
+                </View>
+                <View style={style.iconCameraStyle}>
+                  <FontTelloIcon name="right-dir" color={'#000'} size={25} />
                 </View>
               </View>
             </TouchableOpacity>

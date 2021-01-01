@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const VideoScreen = () => {
+const RadioScreen = () => {
   return (
     <View>
-      <Text>VideoScreen</Text>
+      <Text>RadioScreen</Text>
     </View>
   );
 };
 
-export default VideoScreen;
+export default RadioScreen;
