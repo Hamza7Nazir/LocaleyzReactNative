@@ -1,8 +1,13 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
+import NotFound from '../NotFound';
 import style from './style';
 
 const PodcastEpisode = ({podcastList, onPress}) => {
+  if (!podcastList.length) {
+    return <NotFound typeName="Podcasts" />;
+  }
+
   return (
     <View style={style.parentStyle}>
       <FlatList

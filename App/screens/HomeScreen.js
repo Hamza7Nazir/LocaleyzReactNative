@@ -7,6 +7,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  // const channelList = [];
   const channelList = [
     {
       key: 4,
@@ -33,6 +34,7 @@ const HomeScreen = () => {
       imageUrl: require('../assets/images/snap.png'),
     },
   ];
+  // const videos = [];
   const videos = [
     {
       key: 1,
@@ -52,7 +54,7 @@ const HomeScreen = () => {
       videoUrl: require('../assets/images/silvercat.mov'),
     },
   ];
-
+  // const radios = [];
   const radios = [
     {
       key: 1,
@@ -72,6 +74,7 @@ const HomeScreen = () => {
     },
   ];
 
+  // const podcastList = [];
   const podcastList = [
     {
       key: 11,
@@ -123,15 +126,17 @@ const HomeScreen = () => {
       <Heading iconName="videocam-1" headingName="Latest espisodes" />
       <LatestEpisode
         channelList={channelList}
+        emptyMessage="latest episodes"
         onPress={(id) => {
           navigation.navigate('Video', {id: id});
           console.log('id:: ', id);
         }}
       />
       {/* Live Now Section below */}
-      <Heading iconName="videocam-1" headingName="Live Now" />
+      <Heading iconName="signal" headingName="Live Now" />
       <LiveNow
         channelName="Channel5"
+        emptyMessage="Live episodes"
         videos={videos}
         onPress={(id) => {
           navigation.navigate('Video', {id: id});
@@ -142,6 +147,7 @@ const HomeScreen = () => {
       <Heading iconName="signal" headingName="Live Radio" />
       <LiveNow
         channelName="106.5 FM"
+        emptyMessage="Radios"
         videos={radios}
         onPress={(id) => {
           navigation.navigate('Video', {id: id});

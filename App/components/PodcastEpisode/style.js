@@ -33,4 +33,15 @@ export default StyleSheet.create({
     paddingLeft: 15,
     width: 280,
   },
+  iconCameraStyle: {
+    fontSize: 500,
+    margin: 100,
+  },
+  ifViewStyle: {
+    margin: 50,
+    alignItems: 'center',
+  },
+  ifTextStyle: {
+    color: '#949997',
+  },
 });

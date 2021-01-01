@@ -1,8 +1,13 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
+import NotFound from '../NotFound';
 import style from './style';
 
-const LatestEpisodeComponent = ({channelList, onPress}) => {
+const LatestEpisodeComponent = ({channelList, onPress, emptyMessage}) => {
+  if (!channelList.length) {
+    return <NotFound typeName={emptyMessage} />;
+  }
+
   return (
     <View style={style.parentStyle}>
       <FlatList

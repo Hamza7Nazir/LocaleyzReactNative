@@ -1,9 +1,15 @@
 import React from 'react';
 import {View, Image, Text, FlatList, TouchableOpacity} from 'react-native';
+
+import NotFound from '../NotFound';
 import style from './style';
 import Video from 'react-native-video';
 
-const LiveNowComponent = ({onPress, videos, channelName}) => {
+const LiveNowComponent = ({onPress, videos, channelName, emptyMessage}) => {
+  if (!videos.length) {
+    return <NotFound typeName={emptyMessage} />;
+  }
+
   return (
     <View style={style.parentStyle}>
       <FlatList

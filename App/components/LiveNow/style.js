@@ -67,4 +67,15 @@ export default StyleSheet.create({
     marginHorizontal: 15,
     marginBottom: 35,
   },
+  ifIconCameraStyle: {
+    fontSize: 500,
+    margin: 100,
+  },
+  ifViewStyle: {
+    margin: 100,
+    alignItems: 'center',
+  },
+  ifTextStyle: {
+    color: '#949997',
+  },
 });

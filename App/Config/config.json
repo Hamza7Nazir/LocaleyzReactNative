@@ -53,6 +53,18 @@
       "css": "cw",
       "code": 59397,
       "src": "fontawesome"
+    },
+    {
+      "uid": "ff9a85aa20950dcc0615a2707a2b3f8e",
+      "css": "right-dir",
+      "code": 59398,
+      "src": "entypo"
+    },
+    {
+      "uid": "93c35534e6b079466c4676cdedcdb7c1",
+      "css": "cart-arrow-down",
+      "code": 61976,
+      "src": "fontawesome"
     }
   ]
 }

@@ -14,14 +14,24 @@ const MyStack = () => {
         name="Home"
         component={HomeScreen}
         options={{
-          headerTitle: (props) => <Header {...props} />,
+          headerTitle: (props) => <Header title="Localeyz" {...props} />,
           headerStyle: {
             backgroundColor: '#ffff',
           },
           headerTintColor: 'black',
         }}
       />
-      <Stack.Screen name="Video" component={VideoScreen} />
+      <Stack.Screen
+        name="Video"
+        component={VideoScreen}
+        options={{
+          headerTitle: (props) => <Header title="Video" {...props} />,
+          headerStyle: {
+            backgroundColor: '#ffff',
+          },
+          headerTintColor: 'black',
+        }}
+      />
     </Stack.Navigator>
   );
 };
