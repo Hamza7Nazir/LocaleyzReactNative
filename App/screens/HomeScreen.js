@@ -81,115 +81,6 @@ const HomeScreen = () => {
     podcast.error,
     podcast.data,
   ]);
-
-  //  const channelList = [];
-  // const channelList = [
-  //   {
-  //     key: 4,
-  //     title: 'Brown Cat',
-  //     description: 'Yo tengo un FX Yo quiero dos FX',
-  //     url: require('../assets/images/cat3.jpg'),
-  //   },
-  //   {
-  //     key: 5,
-  //     title: 'Big Cat',
-  //     description: 'Yo come pan',
-  //     url: require('../assets/images/tiger1.jpg'),
-  //   },
-  //   {
-  //     key: 6,
-  //     title: 'Cat',
-  //     description: 'Yo come una manzana',
-  //     url: require('../assets/images/cat2.jpg'),
-  //   },
-  //   {
-  //     key: 7,
-  //     title: 'Snap',
-  //     description: 'Important',
-  //     url: require('../assets/images/snap.png'),
-  //   },
-  // ];
-
-  // const videos = [];
-  // const videos = [
-  //   {
-  //     id: 1,
-  //     description: 'This is test',
-  //     title: 'Telvue Connect HLS Invisible now',
-  //     streamUrl: require('../assets/images/earthmoving.mp4'),
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Access Framingham Invisible now',
-  //     streamUrl: require('../assets/images/earthmoving.mp4'),
-  //   },
-  //   {
-  //     id: 3,
-  //     description: 'This is a rare cat',
-  //     title: 'Silver Cat Video',
-  //     streamUrl: require('../assets/images/silvercat.mov'),
-  //   },
-  // ];
-  // const radios = [];
-  // const radios = [
-  //   {
-  //     id: 1,
-  //     title: 'A lion cub ',
-  //     videoUrl: require('../assets/images/lioncub.mp4'),
-  //   },
-  //   {
-  //     id: 3,
-  //     title: 'Silver Cat Video',
-  //     videoUrl: require('../assets/images/silvercat.mov'),
-  //   },
-  //   {
-  //     id: 2,
-  //     description: 'Debunking the myth of spherical earth',
-  //     title: 'Flat Earth Invisible now',
-  //     videoUrl: require('../assets/images/earthmoving.mp4'),
-  //   },
-  // ];
-
-  // const podcastList = [];
-  // const podcastList = [
-  //   {
-  //     id: 11,
-  //     title: 'Theater in the Rouch - December this year',
-  //     description: 'Yo quiero una manazana',
-  //     image: require('../assets/images/cat.jpg'),
-  //   },
-  //   {
-  //     id: 12,
-  //     title: '458 - SPACEHEADS 2020 VEHCILE ',
-  //     description: 'Yo quiero una manazana',
-  //     image: require('../assets/images/cat3.jpg'),
-  //   },
-  //   {
-  //     id: 13,
-  //     description: 'Debunking the myth of Historical Events',
-  //     title: 'Flat Earth Invisible now',
-  //     image: require('../assets/images/tiger1.jpg'),
-  //   },
-  //   {
-  //     id: 14,
-  //     description: 'Alpha Bravo Charlie',
-  //     title: 'Lorem Ipsum meow meow',
-  //     image: require('../assets/images/cat3.jpg'),
-  //   },
-  //   {
-  //     id: 15,
-  //     description: 'Alpha Bravo Charlie',
-  //     title: 'Lorem Ipsum Lorem  Yo',
-  //     image: require('../assets/images/tank2.jpg'),
-  //   },
-  //   {
-  //     id: 16,
-  //     description: 'Alpha Bravo Charlie',
-  //     title: 'Yo tengo un Gato',
-  //     image: require('../assets/images/cat2.jpg'),
-  //   },
-  // ];
-
   return (
     <ScrollView>
       {/* <Main Heading */}
@@ -202,6 +93,7 @@ const HomeScreen = () => {
       <Heading iconName="videocam-1" headingName="Latest espisodes" />
       <LatestEpisode
         channelList={LatestEpisodes}
+        loading={episode.loading}
         emptyMessage="latest episodes"
         onPress={(id) => {
           console.log('id', id);
@@ -211,7 +103,7 @@ const HomeScreen = () => {
       {/* Live Now */}
       <Heading iconName="videocam-1" headingName="Live Now" />
       <LiveNow
-        channelName="Channel5"
+        channelName="stations"
         emptyMessage="Live episodes"
         videos={LiveNowState}
         onPress={(id) => {
@@ -222,7 +114,7 @@ const HomeScreen = () => {
       {/* Live Radio*/}
       <Heading iconName="signal" headingName="Live Radio" />
       <LiveNow
-        channelName="106.5 FM"
+        channelName="station"
         emptyMessage="Radios"
         videos={LiveRadioState}
         onPress={(id) => {

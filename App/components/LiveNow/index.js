@@ -3,7 +3,6 @@ import {View, Image, Text, FlatList, TouchableOpacity} from 'react-native';
 
 import NotFound from '../NotFound';
 import style from './style';
-import Video from 'react-native-video';
 
 const LiveNowComponent = ({onPress, videos, channelName, emptyMessage}) => {
   if (!videos.length) {
@@ -27,7 +26,11 @@ const LiveNowComponent = ({onPress, videos, channelName, emptyMessage}) => {
                     style={style.iconOnImageStyle}
                     source={require('../../assets/images/af.jpg')}
                   />
-                  <Text style={style.iconTextStyle}>{channelName}</Text>
+                  <Text style={style.iconTextStyle}>
+                    {channelName === 'station'
+                      ? (channelName = item.station)
+                      : (channelName = item.stations)}
+                  </Text>
                 </View>
                 <Text numberOfLines={1} style={style.listTextStyle}>
                   {item.title}

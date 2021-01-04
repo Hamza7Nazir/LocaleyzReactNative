@@ -2,14 +2,21 @@ import React from 'react';
 import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import NotFound from '../NotFound';
 import style from './style';
+import Spinner from 'react-native-loading-spinner-overlay';
 
-const LatestEpisodeComponent = ({channelList, onPress, emptyMessage}) => {
+const LatestEpisodeComponent = ({
+  channelList,
+  onPress,
+  emptyMessage,
+  loading,
+}) => {
   if (!channelList.length) {
     return <NotFound typeName={emptyMessage} />;
   }
 
   return (
     <View style={style.parentStyle}>
+      <Spinner visible={loading} />
       <FlatList
         data={channelList}
         horizontal
