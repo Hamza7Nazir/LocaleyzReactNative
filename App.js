@@ -8,6 +8,14 @@ import VideoScreen from './App/screens/VideoScreen';
 import ScheduleScreen from './App/screens/ScheduleScreen';
 import RadioScreen from './App/screens/RadioScreen';
 import FontTelloIcon from './App/components/FontTelloIcon';
+import {ApolloClient, InMemoryCache} from '@apollo/client';
+import {ApolloProvider} from '@apollo/react-hooks';
+
+const client = new ApolloClient({
+  uri: 'https://api.graphql.jobs/',
+
+  cache: new InMemoryCache(),
+});
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -73,9 +81,11 @@ const MyStack = () => {
 };
 export default function App() {
   return (
-    <NavigationContainer>
-      {/* <MyTab /> */}
-      <MyStack />
-    </NavigationContainer>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        {/* <MyTab /> */}
+        <MyStack />
+      </NavigationContainer>
+    </ApolloProvider>
   );
 }
