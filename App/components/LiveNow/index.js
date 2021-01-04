@@ -14,14 +14,14 @@ const LiveNowComponent = ({onPress, videos, channelName, emptyMessage}) => {
     <View style={style.parentStyle}>
       <FlatList
         data={videos}
-        keyExtractor={(video) => video.title}
+        keyExtractor={(video) => video.id}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity onPress={() => onPress(item.key)}>
+            <TouchableOpacity onPress={() => onPress(item.id)}>
               <View>
-                <Video style={style.videoStyle} source={item.videoUrl} />
+                <Image style={style.videoStyle} source={{uri: item.image}} />
                 <View style={style.iconViewStyle}>
                   <Image
                     style={style.iconOnImageStyle}
@@ -33,7 +33,7 @@ const LiveNowComponent = ({onPress, videos, channelName, emptyMessage}) => {
                   {item.title}
                 </Text>
                 <Text numberOfLines={2} style={style.listTextDetailStyle}>
-                  {item.detail}
+                  {item.description}
                 </Text>
               </View>
             </TouchableOpacity>

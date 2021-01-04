@@ -12,7 +12,7 @@ import {ApolloClient, InMemoryCache} from '@apollo/client';
 import {ApolloProvider} from '@apollo/react-hooks';
 
 const client = new ApolloClient({
-  uri: 'https://api.graphql.jobs/',
+  uri: 'https://localeyz-app-staging-api.herokuapp.com/graphql',
 
   cache: new InMemoryCache(),
 });

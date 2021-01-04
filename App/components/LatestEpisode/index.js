@@ -17,9 +17,14 @@ const LatestEpisodeComponent = ({channelList, onPress, emptyMessage}) => {
         keyExtractor={(obj) => obj.title}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity onPress={() => onPress(item.key)}>
+            <TouchableOpacity onPress={() => onPress(item.id)}>
               <View style={style.listBlockStyle}>
-                <Image style={style.imageStyle} source={item.imageUrl} />
+                <Image
+                  style={style.imageStyle}
+                  source={{
+                    uri: item?.thumbnail?.url || 'https://picsum.photos/200',
+                  }}
+                />
                 <Image
                   style={style.iconOnImageStyle}
                   source={require('../../assets/images/af.jpg')}
@@ -28,7 +33,7 @@ const LatestEpisodeComponent = ({channelList, onPress, emptyMessage}) => {
                   {item.title}
                 </Text>
                 <Text numberOfLines={2} style={style.listDetailStyle}>
-                  {item.detail}
+                  {item.description}
                 </Text>
               </View>
             </TouchableOpacity>

@@ -1,18 +1,29 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, FlatList} from 'react-native';
-import GET_JOBS from '../components/api/index';
+import {View, Text} from 'react-native';
+import api from '../components/api';
 import {useQuery} from '@apollo/react-hooks';
+import {FlatList} from 'react-native-gesture-handler';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-const VideoScreen = () => {
-  const [jobsList, setJobsList] = useState([]);
-  const {loading, error, data} = useQuery(GET_JOBS);
+const VideoScreen = ({route}) => {
+  const {id} = route.params;
+  const [List, setList] = useState([]);
+  const {loading, error, data} = useQuery(api.EPISODES_QUERY_FILTER, {
+    variables: {
+      limit: 10,
+      offset: 10,
+      searchQuery: '',
+      dateQuery: '',
+      organizationId: id.toString(),
+    },
+  });
   useEffect(() => {
     if (error) {
-      // console.log('error ::', error);
+      console.log('error ::', error);
     }
     if (data) {
-      setJobsList(data.jobs);
+      console.log(data.allEpisodes);
+      setList(data.allEpisodes);
     }
   }, [data, error]);
 
@@ -22,14 +33,14 @@ const VideoScreen = () => {
       <View>
         <Text>This is Video Screen</Text>
       </View>
-      {jobsList && (
+      {List && (
         <FlatList
-          data={jobsList}
-          renderItem={(item) => {
+          data={List}
+          keyExtractor={(item) => item.id}
+          renderItem={({item}) => {
             return (
               <View>
-                <Text>{item.item.id}</Text>
-                {console.log(item)}
+                <Text>{item.title}</Text>
               </View>
             );
           }}
