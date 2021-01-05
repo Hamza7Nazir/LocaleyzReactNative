@@ -40,6 +40,10 @@ export default StyleSheet.create({
     width: 100,
     color: '#9c9991',
   },
+  lottie: {
+    width: 100,
+    height: 100,
+  },
   parentStyle: {
     marginHorizontal: 15,
     marginBottom: 90,

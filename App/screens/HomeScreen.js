@@ -15,6 +15,7 @@ const HomeScreen = () => {
   const [LiveNowState, SetLiveNow] = useState([]);
   const [LiveRadioState, SetLiveRadio] = useState([]);
   const [PodcastState, SetPodcasts] = useState([]);
+  const [MediaCentersState, SetMediaCenters] = useState([]);
 
   const episode = useQuery(api.EPISODES_QUERY_FILTER, {
     variables: {
@@ -40,23 +41,32 @@ const HomeScreen = () => {
       organizationId: queryId.toString(),
     },
   });
+  const mediaCenters = useQuery(api.MEDIA_CENTERS_QUERY, {
+    variables: {
+      $lat: '',
+      $long: '',
+    },
+  });
 
   useEffect(() => {
     if (episode.error) {
-      console.log('error ::', episode.error);
+      console.log('Episode error ::', episode.error);
     }
     if (live.error) {
-      console.log('error ::', live.error);
+      console.log('Live error ::', live.error);
     }
     if (radio.error) {
-      console.log('error ::', radio.error);
+      console.log('Radio error ::', radio.error);
     }
     if (podcast.error) {
-      console.log('error ::', podcast.error);
+      console.log('Podcast error ::', podcast.error);
+    }
+    if (mediaCenters.error) {
+      console.log('Media Centers error ::', mediaCenters.error);
     }
     //----------------------------------------------
     if (episode.data) {
-      console.log(episode.data);
+      console.log(episode.data.allEpisodes);
       SetLatestEpisodes(episode.data.allEpisodes);
     }
     if (live.data) {
@@ -71,6 +81,11 @@ const HomeScreen = () => {
       console.log(podcast.data.podcastsByOrganization);
       SetPodcasts(podcast.data.podcastsByOrganization);
     }
+    if (mediaCenters.data) {
+      console.log(mediaCenters.data.oraganizations);
+      SetMediaCenters(mediaCenters.data.oraganizations);
+    }
+    //----------------------------------------------
   }, [
     episode.data,
     episode.error,
@@ -80,6 +95,8 @@ const HomeScreen = () => {
     radio.data,
     podcast.error,
     podcast.data,
+    mediaCenters.data,
+    mediaCenters.error,
   ]);
   return (
     <ScrollView>

@@ -30,7 +30,7 @@ export default StyleSheet.create({
     left: 0,
     margin: 5,
     position: 'absolute',
-    top: 130,
+    top: 120,
     color: '#fff',
   },
   listTextDetailStyle: {
@@ -40,7 +40,7 @@ export default StyleSheet.create({
     left: 0,
     margin: 5,
     position: 'absolute',
-    top: 165,
+    top: 155,
     color: '#fff',
   },
   iconOnImageStyle: {

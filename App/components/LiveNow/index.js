@@ -31,6 +31,7 @@ const LiveNowComponent = ({onPress, videos, channelName, emptyMessage}) => {
                       ? (channelName = item.station)
                       : (channelName = item.stations)}
                   </Text>
+                  {/* Same component for Live now and Live Radio but their keys for channel names are differnt  */}
                 </View>
                 <Text numberOfLines={1} style={style.listTextStyle}>
                   {item.title}

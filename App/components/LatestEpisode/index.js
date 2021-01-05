@@ -1,8 +1,17 @@
 import React from 'react';
-import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  // ActivityIndicator,
+} from 'react-native';
 import NotFound from '../NotFound';
 import style from './style';
-import Spinner from 'react-native-loading-spinner-overlay';
+import {TrimDescription} from '../../util/TrimDescription';
+// import Spinner from 'react-native-loading-spinner-overlay';
+// import AnimatedLoader from 'react-native-animated-loader';
 
 const LatestEpisodeComponent = ({
   channelList,
@@ -13,10 +22,13 @@ const LatestEpisodeComponent = ({
   if (!channelList.length) {
     return <NotFound typeName={emptyMessage} />;
   }
+  // console.log('Loading Latest Eposidoe -------------------- ', loading);
+  // if (loading) {
+  //   return <ActivityIndicator size="large" color="#00ff00" />;
+  // }
 
   return (
     <View style={style.parentStyle}>
-      <Spinner visible={loading} />
       <FlatList
         data={channelList}
         horizontal
@@ -40,7 +52,7 @@ const LatestEpisodeComponent = ({
                   {item.title}
                 </Text>
                 <Text numberOfLines={2} style={style.listDetailStyle}>
-                  {item.description}
+                  {TrimDescription(item.description)}
                 </Text>
               </View>
             </TouchableOpacity>
