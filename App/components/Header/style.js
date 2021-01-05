@@ -9,6 +9,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
+    // backgroundColor: '#fafafa',
   },
   textStyle: {
     fontFamily: 'sans-serif-condensed',

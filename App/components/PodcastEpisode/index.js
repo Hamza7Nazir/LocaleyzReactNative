@@ -1,9 +1,10 @@
 import React from 'react';
-import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import FontTelloIcon from '../../components/FontTelloIcon';
+import {View, FlatList, TouchableOpacity} from 'react-native';
+
 import LoadingSpinner from '../LoadingSpinner';
 import NotFound from '../NotFound';
 import style from './style';
+import RenderList from '../RenderList';
 
 const PodcastEpisode = ({podcastList, onPress, loading}) => {
   if (podcastList === undefined) {
@@ -23,20 +24,7 @@ const PodcastEpisode = ({podcastList, onPress, loading}) => {
         renderItem={({item}) => {
           return (
             <TouchableOpacity onPress={() => onPress(item.id)}>
-              <View style={style.listBarStyle}>
-                <Image style={style.imageStyle} source={{uri: item.image}} />
-                <View style={style.textWrap}>
-                  <Text numberOfLines={1} style={style.titleStyle}>
-                    {item.title}
-                  </Text>
-                  <Text numberOfLines={1} style={style.detailStyle}>
-                    {item.description}
-                  </Text>
-                </View>
-                <View style={style.iconCameraStyle}>
-                  <FontTelloIcon name="right-dir" color={'#000'} size={25} />
-                </View>
-              </View>
+              <RenderList item={item} />
             </TouchableOpacity>
           );
         }}

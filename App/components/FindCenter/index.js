@@ -3,7 +3,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import style from './style';
 
-const CenterComponent = () => {
+const CenterComponent = ({onPress}) => {
   return (
     <View style={style.parentStyle}>
       <TouchableOpacity>
@@ -12,7 +12,7 @@ const CenterComponent = () => {
           source={require('../../assets/images/af.jpg')}
         />
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onPress}>
         <View style={style.touchableParentStyle}>
           <Text style={style.textStyle}>Find a Center </Text>
           <Ionicons name={'location-outline'} style={style.iconStyle} light />

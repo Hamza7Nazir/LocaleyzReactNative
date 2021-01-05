@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -7,6 +8,7 @@ import Header from './App/components/Header';
 import VideoScreen from './App/screens/VideoScreen';
 import ScheduleScreen from './App/screens/ScheduleScreen';
 import RadioScreen from './App/screens/RadioScreen';
+import SearchCenterScreen from './App/screens/SearchCenterScreen';
 import FontTelloIcon from './App/components/FontTelloIcon';
 import {ApolloClient, InMemoryCache} from '@apollo/client';
 import {ApolloProvider} from '@apollo/react-hooks';
@@ -55,7 +57,7 @@ const MyStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home"
+        name="Tab"
         component={MyTab}
         options={{
           headerTitle: (props) => <Header title="Localeyz" {...props} />,
@@ -63,19 +65,21 @@ const MyStack = () => {
             backgroundColor: '#ffff',
           },
           headerTintColor: 'black',
+          cardStyle: {backgroundColor: '#fff'}, //Changes background color of the whole screen
         }}
       />
-      {/* <Stack.Screen
-        name="Video"
-        component={VideoScreen}
+      <Stack.Screen
+        name="SearchCenter"
+        component={SearchCenterScreen}
         options={{
-          headerTitle: (props) => <Header title="Video" {...props} />,
+          headerTitle: (props) => <Header title="Localeyz" {...props} />,
           headerStyle: {
             backgroundColor: '#ffff',
           },
           headerTintColor: 'black',
+          cardStyle: {backgroundColor: '#fff'}, //Changes background color of the whole screen
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };

@@ -45,6 +45,7 @@ const LatestEpisodeComponent = ({
                 </Text>
                 <Text numberOfLines={2} style={style.listDetailStyle}>
                   {TrimDescription(item.description)}
+                  {/* This trims the <p></p> tags */}
                 </Text>
               </View>
             </TouchableOpacity>

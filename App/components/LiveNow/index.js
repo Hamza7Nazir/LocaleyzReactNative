@@ -25,6 +25,7 @@ const LiveNowComponent = ({
         keyExtractor={(video) => video.id}
         horizontal
         showsHorizontalScrollIndicator={false}
+        // ListEmptyComponent
         renderItem={({item}) => {
           return (
             <TouchableOpacity onPress={() => onPress(item.id)}>

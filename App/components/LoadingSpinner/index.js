@@ -4,7 +4,7 @@ import style from './style';
 const LoadingSpinner = () => {
   return (
     <View style={style.spinnerStyle}>
-      <ActivityIndicator size="large" color="#989a9e" />
+      <ActivityIndicator size="large" color="#949997" />
     </View>
   );
 };

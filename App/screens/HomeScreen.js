@@ -82,8 +82,8 @@ const HomeScreen = () => {
       SetPodcasts(podcast.data.podcastsByOrganization);
     }
     if (mediaCenters.data) {
-      console.log(mediaCenters.data.oraganizations);
-      SetMediaCenters(mediaCenters.data.oraganizations);
+      console.log(mediaCenters.data.organizations);
+      SetMediaCenters(mediaCenters.data.organizations);
     }
     //----------------------------------------------
   }, [
@@ -105,7 +105,7 @@ const HomeScreen = () => {
       <Text style={style.headingStyle}>Your recent picks</Text>
 
       {/* Center  */}
-      <CenterComponent />
+      <CenterComponent onPress={() => navigation.navigate('SearchCenter')} />
 
       {/* Latest Espisode */}
       <Heading iconName="videocam-1" headingName="Latest espisodes" />
