@@ -98,6 +98,7 @@ const HomeScreen = () => {
     mediaCenters.data,
     mediaCenters.error,
   ]);
+
   return (
     <ScrollView>
       {/* <Main Heading */}
@@ -121,6 +122,7 @@ const HomeScreen = () => {
       <Heading iconName="videocam-1" headingName="Live Now" />
       <LiveNow
         channelName="stations"
+        loading={live.loading}
         emptyMessage="Live episodes"
         videos={LiveNowState}
         onPress={(id) => {
@@ -132,6 +134,7 @@ const HomeScreen = () => {
       <Heading iconName="signal" headingName="Live Radio" />
       <LiveNow
         channelName="station"
+        loading={radio.loading}
         emptyMessage="Radios"
         videos={LiveRadioState}
         onPress={(id) => {
@@ -143,6 +146,7 @@ const HomeScreen = () => {
       <Heading iconName="signal" headingName="Latest podcast espisodes" />
       <PodcastEpisode
         podcastList={PodcastState}
+        loading={podcast.loading}
         onPress={(id) => {
           navigation.navigate('Video', {id: id});
           console.log(id);

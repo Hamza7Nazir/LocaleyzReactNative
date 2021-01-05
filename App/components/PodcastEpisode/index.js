@@ -1,19 +1,16 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import FontTelloIcon from '../../components/FontTelloIcon';
+import LoadingSpinner from '../LoadingSpinner';
 import NotFound from '../NotFound';
 import style from './style';
 
-const PodcastEpisode = ({podcastList, onPress}) => {
-  if (!podcastList.length) {
+const PodcastEpisode = ({podcastList, onPress, loading}) => {
+  if (podcastList === undefined) {
     return <NotFound typeName="Podcasts" />;
+  }
+  if (loading) {
+    return <LoadingSpinner />;
   }
 
   return (

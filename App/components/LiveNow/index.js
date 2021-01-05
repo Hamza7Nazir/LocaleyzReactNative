@@ -1,12 +1,21 @@
 import React from 'react';
 import {View, Image, Text, FlatList, TouchableOpacity} from 'react-native';
-
+import LoadingSpinner from '../LoadingSpinner';
 import NotFound from '../NotFound';
 import style from './style';
 
-const LiveNowComponent = ({onPress, videos, channelName, emptyMessage}) => {
-  if (!videos.length) {
+const LiveNowComponent = ({
+  onPress,
+  videos,
+  channelName,
+  emptyMessage,
+  loading,
+}) => {
+  if (videos === undefined) {
     return <NotFound typeName={emptyMessage} />;
+  }
+  if (loading) {
+    return <LoadingSpinner />;
   }
 
   return (

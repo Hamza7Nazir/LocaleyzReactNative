@@ -7,6 +7,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 15,
   },
+  spinnerStyle: {
+    height: 110,
+  },
   iconCameraStyle: {
     fontSize: 35,
     marginRight: 15,
