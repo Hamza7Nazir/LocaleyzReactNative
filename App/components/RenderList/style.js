@@ -13,6 +13,22 @@ export default StyleSheet.create({
     alignItems: 'center',
     padding: 5,
   },
+  mediaCenterStyle: {
+    marginBottom: 5,
+    borderWidth: 0,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 5,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    elevation: 2,
+  },
   imageStyle: {
     height: 40,
     width: 40,

@@ -2,6 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
   ViewStyle: {
+    marginBottom: 40,
     borderWidth: 1,
     borderColor: '#34b7eb',
     borderRadius: 30,

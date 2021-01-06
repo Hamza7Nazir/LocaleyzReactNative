@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TextInput} from 'react-native';
+import {View, TextInput} from 'react-native';
 import style from './style';
 import FontTelloIcon from '../../components/FontTelloIcon';
 

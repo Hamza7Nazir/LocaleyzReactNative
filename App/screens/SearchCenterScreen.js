@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View} from 'react-native';
+import {View, SafeAreaView, ScrollView} from 'react-native';
 import SearchBar from '../components/SearchBar';
 import api from '../components/api';
 import {useQuery} from '@apollo/react-hooks';
-import {RenderList} from '../components';
+import RenderList from '../components/RenderList';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const SearchCenterScreen = () => {
   const [MediaCentersState, SetMediaCenters] = useState([]);
@@ -23,12 +24,22 @@ const SearchCenterScreen = () => {
       SetMediaCenters(mediaCenters.data.organizations);
     }
   }, [mediaCenters.data, mediaCenters.error]);
+  console.log('Media Center obj--- ', MediaCentersState);
 
+  if (MediaCentersState === null) {
+    return <LoadingSpinner />;
+  }
   return (
-    <View>
+    <ScrollView>
       <SearchBar />
-      <RenderList item={MediaCentersState} />
-    </View>
+      <RenderList
+        data={MediaCentersState}
+        onPress={(id) => console.log('Media with Id is pressed', id)}
+        imageType="square"
+        descriptionType="address"
+        listType="FindMediaCenters"
+      />
+    </ScrollView>
   );
 };
 export default SearchCenterScreen;

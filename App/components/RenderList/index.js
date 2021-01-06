@@ -2,30 +2,51 @@ import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import FontTelloIcon from '../../components/FontTelloIcon';
 import style from './style';
+import LoadingSpinner from '../LoadingSpinner';
 
-const RenderList = ({iconName, data, onPress}) => {
+const RenderList = ({
+  iconName,
+  data,
+  onPress,
+  imageType,
+  descriptionType,
+  listType,
+}) => {
+  let subHeading = '';
+
   return (
     <View style={style.parentStyle}>
       <FlatList
         data={data}
         horizontal={false}
-        // Added toString to remove a warning
+        ListEmptyComponent={<LoadingSpinner />}
         keyExtractor={(pod) => pod.id.toString()}
         renderItem={({item}) => {
           return (
             <TouchableOpacity onPress={() => onPress(item.id)}>
-              {console.log('Item ----', item)}
-              <View style={style.listBarStyle}>
+              <View
+                style={
+                  listType === 'FindMediaCenters'
+                    ? style.mediaCenterStyle
+                    : style.listBarStyle
+                  // Styling choice
+                }>
                 <Image
                   style={style.imageStyle}
-                  source={{uri: item.image || 'https://picsum.photos/200'}}
+                  source={{
+                    // change in image
+                    uri: imageType === 'square' ? item.squareImage : item.image,
+                  }}
                 />
                 <View style={style.textWrap}>
                   <Text numberOfLines={1} style={style.titleStyle}>
                     {item.title}
                   </Text>
                   <Text numberOfLines={1} style={style.detailStyle}>
-                    {item.description}
+                    {/* change in address */}
+                    {descriptionType === 'address'
+                      ? (subHeading = item.address)
+                      : (subHeading = item.description)}
                   </Text>
                 </View>
                 <View style={style.iconCameraStyle}>
