@@ -66,23 +66,18 @@ const HomeScreen = () => {
     }
     //----------------------------------------------
     if (episode.data) {
-      console.log(episode.data.allEpisodes);
       SetLatestEpisodes(episode.data.allEpisodes);
     }
     if (live.data) {
-      console.log(live.data.onAirLiveVideosByOrganization);
       SetLiveNow(live.data.onAirLiveVideosByOrganization);
     }
     if (radio.data) {
-      console.log(radio.data.radioByOrganization);
       SetLiveRadio(radio.data.radioByOrganization);
     }
     if (podcast.data) {
-      console.log(podcast.data.podcastsByOrganization);
       SetPodcasts(podcast.data.podcastsByOrganization);
     }
     if (mediaCenters.data) {
-      console.log(mediaCenters.data.organizations);
       SetMediaCenters(mediaCenters.data.organizations);
     }
     //----------------------------------------------

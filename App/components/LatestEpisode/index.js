@@ -14,7 +14,7 @@ const LatestEpisodeComponent = ({
   if (channelList === undefined) {
     return <NotFound typeName={emptyMessage} />;
   }
-  console.log('Loading Latest Eposidoe -------------------- ', loading);
+
   if (loading) {
     return <LoadingSpinner />;
   }

@@ -1,6 +1,10 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
+  parentStyle: {
+    marginHorizontal: 15,
+    marginBottom: 30,
+  },
   listBarStyle: {
     borderWidth: 1,
     borderColor: '#c9c8c5',
@@ -32,9 +36,5 @@ export default StyleSheet.create({
   iconCameraStyle: {
     paddingLeft: 20,
     marginLeft: 15,
-  },
-  parentStyle: {
-    marginHorizontal: 15,
-    marginBottom: 30,
   },
 });
