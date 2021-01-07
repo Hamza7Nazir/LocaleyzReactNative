@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -12,6 +12,7 @@ import SearchCenterScreen from './App/screens/SearchCenterScreen';
 import FontTelloIcon from './App/components/FontTelloIcon';
 import {ApolloClient, InMemoryCache} from '@apollo/client';
 import {ApolloProvider} from '@apollo/react-hooks';
+import MediaContext from './App/Context/MediaContext';
 
 const client = new ApolloClient({
   uri: 'https://localeyz-app-staging-api.herokuapp.com/graphql',
@@ -84,12 +85,15 @@ const MyStack = () => {
   );
 };
 export default function App() {
+  const [data, setData] = useState('test');
+
   return (
-    <ApolloProvider client={client}>
-      <NavigationContainer>
-        {/* <MyTab /> */}
-        <MyStack />
-      </NavigationContainer>
-    </ApolloProvider>
+    <MediaContext.Provider value={{data, setData}}>
+      <ApolloProvider client={client}>
+        <NavigationContainer>
+          <MyStack />
+        </NavigationContainer>
+      </ApolloProvider>
+    </MediaContext.Provider>
   );
 }

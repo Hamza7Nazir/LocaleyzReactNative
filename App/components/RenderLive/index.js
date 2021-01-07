@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity, FlatList} from 'react-native';
 import style from './style';
 import LoadingSpinner from '../LoadingSpinner';
 
-const RenderLive = ({data, channelName, onPress}) => {
+const RenderLive = ({data, channelName, thumbImage, onPress}) => {
   return (
     <View style={style.parentStyle}>
       <FlatList
@@ -18,12 +18,12 @@ const RenderLive = ({data, channelName, onPress}) => {
               <View>
                 <Image
                   style={style.videoStyle}
-                  source={{uri: item.image || 'https://picsum.photos/200'}}
+                  source={{uri: item.image || '../../assets/images/imgNot.jpg'}}
                 />
                 <View style={style.iconViewStyle}>
                   <Image
                     style={style.iconOnImageStyle}
-                    source={require('../../assets/images/af.jpg')}
+                    source={{uri: thumbImage}}
                   />
                   <Text style={style.iconTextStyle}>
                     {channelName === 'station'

@@ -11,7 +11,6 @@ const PodcastEpisode = ({podcastList, onPress, loading}) => {
   } else if (loading) {
     return <LoadingSpinner />;
   } else {
-    console.log('Podcast obj----', podcastList);
     return (
       <RenderList
         data={podcastList}

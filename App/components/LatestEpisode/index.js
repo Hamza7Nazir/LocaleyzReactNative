@@ -10,6 +10,7 @@ const LatestEpisodeComponent = ({
   onPress,
   emptyMessage,
   loading,
+  thumbImage,
 }) => {
   if (channelList === undefined) {
     return <NotFound typeName={emptyMessage} />;
@@ -33,12 +34,13 @@ const LatestEpisodeComponent = ({
                 <Image
                   style={style.imageStyle}
                   source={{
-                    uri: item?.thumbnail?.url || 'https://picsum.photos/200',
+                    uri:
+                      item?.thumbnail?.url || '../../assets/images/imgNot.jpg',
                   }}
                 />
                 <Image
                   style={style.iconOnImageStyle}
-                  source={require('../../assets/images/af.jpg')}
+                  source={{uri: thumbImage}}
                 />
                 <Text numberOfLines={1} style={style.listTextStyle}>
                   {item.title}

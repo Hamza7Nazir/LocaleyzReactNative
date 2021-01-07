@@ -11,13 +11,23 @@ const LiveNowComponent = ({
   channelName,
   emptyMessage,
   loading,
+  thumbImage,
 }) => {
   if (videos === undefined) {
     return <NotFound typeName={emptyMessage} />;
   }
 
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
   return (
-    <RenderLive data={videos} channelName={channelName} onPress={onPress} />
+    <RenderLive
+      data={videos}
+      thumbImage={thumbImage}
+      channelName={channelName}
+      onPress={onPress}
+    />
   );
 };
 

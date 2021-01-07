@@ -3,14 +3,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import style from './style';
 
-const CenterComponent = ({onPress}) => {
+const CenterComponent = ({onPress, thumbImage}) => {
   return (
     <View style={style.parentStyle}>
       <TouchableOpacity>
-        <Image
-          style={style.imageStyle}
-          source={require('../../assets/images/af.jpg')}
-        />
+        <Image style={style.imageStyle} source={{uri: thumbImage}} />
       </TouchableOpacity>
       <TouchableOpacity onPress={onPress}>
         <View style={style.touchableParentStyle}>

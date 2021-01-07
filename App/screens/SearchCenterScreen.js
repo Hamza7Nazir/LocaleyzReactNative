@@ -1,45 +1,34 @@
-import React, {useState, useEffect} from 'react';
-import {View, SafeAreaView, ScrollView} from 'react-native';
+import React, {useContext} from 'react';
+import {ScrollView} from 'react-native';
 import SearchBar from '../components/SearchBar';
-import api from '../components/api';
-import {useQuery} from '@apollo/react-hooks';
+
 import RenderList from '../components/RenderList';
-import LoadingSpinner from '../components/LoadingSpinner';
+import MediaContext from '../Context/MediaContext';
+import {useNavigation} from '@react-navigation/native';
 
 const SearchCenterScreen = () => {
-  const [MediaCentersState, SetMediaCenters] = useState([]);
-  const mediaCenters = useQuery(api.MEDIA_CENTERS_QUERY, {
-    variables: {
-      $lat: '',
-      $long: '',
-    },
-  });
+  const {data} = useContext(MediaContext);
+  const navigation = useNavigation();
 
-  useEffect(() => {
-    if (mediaCenters.error) {
-      console.log('Media Centers error ::', mediaCenters.error);
-    }
-    if (mediaCenters.data) {
-      console.log('Media Center--- ', mediaCenters.data.organizations);
-      SetMediaCenters(mediaCenters.data.organizations);
-    }
-  }, [mediaCenters.data, mediaCenters.error]);
-  console.log('Media Center obj--- ', MediaCentersState);
-
-  if (MediaCentersState === null) {
-    return <LoadingSpinner />;
-  }
   return (
-    <ScrollView>
-      <SearchBar />
-      <RenderList
-        data={MediaCentersState}
-        onPress={(id) => console.log('Media with Id is pressed', id)}
-        imageType="square"
-        descriptionType="address"
-        listType="FindMediaCenters"
-      />
-    </ScrollView>
+    <MediaContext.Consumer>
+      {(value) => (
+        <ScrollView>
+          <SearchBar />
+          <RenderList
+            data={data}
+            onPress={(id) => {
+              console.log('id', id);
+              navigation.navigate('Home', {id: id});
+              // Passing organization Id to home screen
+            }}
+            imageType="square"
+            descriptionType="address"
+            listType="FindMediaCenters"
+          />
+        </ScrollView>
+      )}
+    </MediaContext.Consumer>
   );
 };
 export default SearchCenterScreen;

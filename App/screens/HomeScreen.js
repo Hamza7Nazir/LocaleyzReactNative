@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {ScrollView, Text, StyleSheet} from 'react-native';
 import CenterComponent from '../components/FindCenter';
 
@@ -7,15 +7,26 @@ import {useNavigation} from '@react-navigation/native';
 
 import api from '../components/api';
 import {useQuery} from '@apollo/react-hooks';
+import MediaContext from '../Context/MediaContext';
+import {getImage} from '../util/getImage';
 
-const HomeScreen = () => {
+const HomeScreen = ({route}) => {
   const navigation = useNavigation();
-  let queryId = 5;
+  let queryId = '5';
+  let catId = 0;
+  if (route.params !== undefined) {
+    catId = route.params;
+    queryId = catId.id;
+  }
+
+  const {data, setData} = useContext(MediaContext);
+
+  const thumbImage = getImage(data, queryId);
+
   const [LatestEpisodes, SetLatestEpisodes] = useState([]);
   const [LiveNowState, SetLiveNow] = useState([]);
   const [LiveRadioState, SetLiveRadio] = useState([]);
   const [PodcastState, SetPodcasts] = useState([]);
-  const [MediaCentersState, SetMediaCenters] = useState([]);
 
   const episode = useQuery(api.EPISODES_QUERY_FILTER, {
     variables: {
@@ -41,13 +52,12 @@ const HomeScreen = () => {
       organizationId: queryId.toString(),
     },
   });
-  const mediaCenters = useQuery(api.MEDIA_CENTERS_QUERY, {
+  const media = useQuery(api.MEDIA_CENTERS_QUERY, {
     variables: {
       $lat: '',
       $long: '',
     },
   });
-
   useEffect(() => {
     if (episode.error) {
       console.log('Episode error ::', episode.error);
@@ -61,8 +71,8 @@ const HomeScreen = () => {
     if (podcast.error) {
       console.log('Podcast error ::', podcast.error);
     }
-    if (mediaCenters.error) {
-      console.log('Media Centers error ::', mediaCenters.error);
+    if (media.error) {
+      console.log('media error ::', podcast.error);
     }
     //----------------------------------------------
     if (episode.data) {
@@ -77,9 +87,10 @@ const HomeScreen = () => {
     if (podcast.data) {
       SetPodcasts(podcast.data.podcastsByOrganization);
     }
-    if (mediaCenters.data) {
-      SetMediaCenters(mediaCenters.data.organizations);
+    if (media.data) {
+      setData(media.data.organizations);
     }
+
     //----------------------------------------------
   }, [
     episode.data,
@@ -90,8 +101,9 @@ const HomeScreen = () => {
     radio.data,
     podcast.error,
     podcast.data,
-    mediaCenters.data,
-    mediaCenters.error,
+    media.data,
+    media.error,
+    setData,
   ]);
 
   return (
@@ -100,12 +112,16 @@ const HomeScreen = () => {
       <Text style={style.headingStyle}>Your recent picks</Text>
 
       {/* Center  */}
-      <CenterComponent onPress={() => navigation.navigate('SearchCenter')} />
+      <CenterComponent
+        thumbImage={thumbImage}
+        onPress={() => navigation.navigate('SearchCenter')}
+      />
 
       {/* Latest Espisode */}
       <Heading iconName="videocam-1" headingName="Latest espisodes" />
       <LatestEpisode
         channelList={LatestEpisodes}
+        thumbImage={thumbImage}
         loading={episode.loading}
         emptyMessage="latest episodes"
         onPress={(id) => {
@@ -117,6 +133,7 @@ const HomeScreen = () => {
       <Heading iconName="videocam-1" headingName="Live Now" />
       <LiveNow
         channelName="stations"
+        thumbImage={thumbImage}
         loading={live.loading}
         emptyMessage="Live episodes"
         videos={LiveNowState}
@@ -129,6 +146,7 @@ const HomeScreen = () => {
       <Heading iconName="signal" headingName="Live Radio" />
       <LiveNow
         channelName="station"
+        thumbImage={thumbImage}
         loading={radio.loading}
         emptyMessage="Radios"
         videos={LiveRadioState}
