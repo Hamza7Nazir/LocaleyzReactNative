@@ -6,19 +6,19 @@ import style from './style';
 import RenderList from '../RenderList';
 
 const PodcastEpisode = ({podcastList, onPress, loading}) => {
-  if (podcastList === undefined) {
-    return <NotFound typeName="Podcasts" />;
-  } else if (loading) {
+  if (loading) {
     return <LoadingSpinner />;
-  } else {
-    return (
-      <RenderList
-        data={podcastList}
-        onPress={onPress}
-        iconName="right-dir"
-        descriptionType="desc"
-      />
-    );
   }
+  if (!podcastList.length) {
+    return <NotFound typeName="Podcasts" />;
+  }
+  return (
+    <RenderList
+      data={podcastList}
+      onPress={onPress}
+      iconName="right-dir"
+      descriptionType="desc"
+    />
+  );
 };
 export default PodcastEpisode;

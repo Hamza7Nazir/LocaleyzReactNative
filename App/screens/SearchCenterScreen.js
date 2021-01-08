@@ -11,24 +11,20 @@ const SearchCenterScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <MediaContext.Consumer>
-      {(value) => (
-        <ScrollView>
-          <SearchBar />
-          <RenderList
-            data={data}
-            onPress={(id) => {
-              console.log('id', id);
-              navigation.navigate('Home', {id: id});
-              // Passing organization Id to home screen
-            }}
-            imageType="square"
-            descriptionType="address"
-            listType="FindMediaCenters"
-          />
-        </ScrollView>
-      )}
-    </MediaContext.Consumer>
+    <ScrollView>
+      <SearchBar />
+      <RenderList
+        data={data}
+        onPress={(id) => {
+          console.log('id', id);
+          navigation.navigate('Home', {id: id});
+          // Passing organization Id to home screen
+        }}
+        imageType="square"
+        descriptionType="address"
+        listType="FindMediaCenters"
+      />
+    </ScrollView>
   );
 };
 export default SearchCenterScreen;

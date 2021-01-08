@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, FlatList, TouchableOpacity} from 'react-native';
 import LoadingSpinner from '../LoadingSpinner';
 import NotFound from '../NotFound';
 import style from './style';
@@ -13,12 +12,11 @@ const LiveNowComponent = ({
   loading,
   thumbImage,
 }) => {
-  if (videos === undefined) {
-    return <NotFound typeName={emptyMessage} />;
-  }
-
   if (loading) {
     return <LoadingSpinner />;
+  }
+  if (!videos.length) {
+    return <NotFound typeName={emptyMessage} />;
   }
 
   return (

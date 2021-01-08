@@ -8,20 +8,24 @@ import {useNavigation} from '@react-navigation/native';
 import api from '../components/api';
 import {useQuery} from '@apollo/react-hooks';
 import MediaContext from '../Context/MediaContext';
-import {getImage} from '../util/getImage';
+import {GetStorage, SetStorage, getImage} from '../util';
 
 const HomeScreen = ({route}) => {
   const navigation = useNavigation();
-  let queryId = '5';
+  const [Qid, SetQid] = useState(0);
   let catId = 0;
   if (route.params !== undefined) {
     catId = route.params;
-    queryId = catId.id;
+    SetStorage('id', catId); // if navigating from Search screen then setStorage
   }
 
-  const {data, setData} = useContext(MediaContext);
+  useEffect(() => {
+    GetStorage('id', SetQid);
+  }, [catId]); // if navigated from Search screen then fetch new id
 
-  const thumbImage = getImage(data, queryId);
+  console.log('Qid is ::::', Qid.id);
+
+  const {data, setData} = useContext(MediaContext);
 
   const [LatestEpisodes, SetLatestEpisodes] = useState([]);
   const [LiveNowState, SetLiveNow] = useState([]);
@@ -34,22 +38,22 @@ const HomeScreen = ({route}) => {
       offset: 10,
       searchQuery: '',
       dateQuery: '',
-      organizationId: queryId.toString(),
+      organizationId: Qid.id,
     },
   });
   const live = useQuery(api.LIVE_VIDEOS_QUERY, {
     variables: {
-      organizationId: queryId.toString(),
+      organizationId: Qid.id,
     },
   });
   const radio = useQuery(api.ALL_RADIO_QUERY, {
     variables: {
-      organizationId: queryId.toString(),
+      organizationId: Qid.id,
     },
   });
   const podcast = useQuery(api.ALL_PODCASTS_QUERY, {
     variables: {
-      organizationId: queryId.toString(),
+      organizationId: Qid.id,
     },
   });
   const media = useQuery(api.MEDIA_CENTERS_QUERY, {
@@ -76,18 +80,23 @@ const HomeScreen = ({route}) => {
     }
     //----------------------------------------------
     if (episode.data) {
+      console.log('Episode', episode.data.allEpisodes);
       SetLatestEpisodes(episode.data.allEpisodes);
     }
     if (live.data) {
+      console.log('Live', live.data.onAirLiveVideosByOrganization);
       SetLiveNow(live.data.onAirLiveVideosByOrganization);
     }
     if (radio.data) {
+      console.log('Radio', radio.data.radioByOrganization);
       SetLiveRadio(radio.data.radioByOrganization);
     }
     if (podcast.data) {
+      console.log('PodCast', podcast.data.podcastsByOrganization);
       SetPodcasts(podcast.data.podcastsByOrganization);
     }
     if (media.data) {
+      console.log('Media', media.data.organizations);
       setData(media.data.organizations);
     }
 
@@ -106,6 +115,7 @@ const HomeScreen = ({route}) => {
     setData,
   ]);
 
+  const thumbImage = getImage(data, Qid.id);
   return (
     <ScrollView>
       {/* <Main Heading */}

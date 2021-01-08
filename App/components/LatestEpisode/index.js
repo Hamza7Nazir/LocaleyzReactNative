@@ -3,7 +3,7 @@ import {View, Text, FlatList, TouchableOpacity, Image} from 'react-native';
 import NotFound from '../NotFound';
 import LoadingSpinner from '../LoadingSpinner';
 import style from './style';
-import {TrimDescription} from '../../util/TrimDescription';
+import {TrimDescription} from '../../util/index';
 
 const LatestEpisodeComponent = ({
   channelList,
@@ -12,14 +12,12 @@ const LatestEpisodeComponent = ({
   loading,
   thumbImage,
 }) => {
-  if (channelList === undefined) {
-    return <NotFound typeName={emptyMessage} />;
-  }
-
   if (loading) {
     return <LoadingSpinner />;
   }
-
+  if (!channelList.length) {
+    return <NotFound typeName={emptyMessage} />;
+  }
   return (
     <View style={style.parentStyle}>
       <FlatList
