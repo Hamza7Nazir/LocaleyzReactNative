@@ -12,23 +12,72 @@ import {GetStorage, SetStorage, getImage} from '../util';
 
 const HomeScreen = ({route}) => {
   const navigation = useNavigation();
-  const [Qid, SetQid] = useState(0);
-  let catId = 0;
+  const [Qid, SetQid] = useState({
+    id1: '1',
+    id2: '1',
+    id3: '1',
+  });
+  let obj = {};
+  let catId = '';
   if (route.params !== undefined) {
     catId = route.params;
-    SetStorage('id', catId); // if navigating from Search screen then setStorage
   }
+  const [Counter, SetCounter] = useState(1);
 
   useEffect(() => {
-    GetStorage('id', SetQid);
-  }, [catId]); // if navigated from Search screen then fetch new id
+    if (Counter === 1) {
+      obj.id1 = catId;
+      obj.id2 = Qid.id2;
+      obj.id3 = Qid.id3;
 
-  console.log('Qid is ::::', Qid.id);
+      SetCounter(Counter + 1);
+    }
+    if (Counter === 2) {
+      obj.id1 = Qid.id1;
+      obj.id2 = catId;
+      obj.id3 = Qid.id3;
+
+      SetCounter(Counter + 1);
+    }
+    if (Counter === 3) {
+      obj.id1 = Qid.id1;
+      obj.id2 = Qid.id2;
+      obj.id3 = catId;
+
+      SetCounter(1);
+    }
+
+    SetStorage('id', obj);
+    GetStorage('id', SetQid);
+    // if navigating from Search screen then setStorage
+  }, [catId]);
+
+  // useEffect(() => {
+  //   GetStorage('id', SetQid);
+  // }, [catId]); // if navigated from Search screen then fetch new id
+
+  console.log('Qid is ::::', Qid.id1.id);
+
+  //-------------------------------------------------------------------
+  // const [Qid, SetQid] = useState(0);
+
+  // let catId = 0;
+  // if (route.params !== undefined) {
+  //   catId = route.params;
+  //   SetStorage('id', catId); // if navigating from Search screen then setStorage
+  // }
+
+  // useEffect(() => {
+  //   GetStorage('id', SetQid);
+  // }, [catId]); // if navigated from Search screen then fetch new id
+
+  // console.log('Qid is ::::', Qid);
 
   const {data, setData} = useContext(MediaContext);
 
   const [LatestEpisodes, SetLatestEpisodes] = useState([]);
   const [LiveNowState, SetLiveNow] = useState([]);
+
   const [LiveRadioState, SetLiveRadio] = useState([]);
   const [PodcastState, SetPodcasts] = useState([]);
 
@@ -38,22 +87,22 @@ const HomeScreen = ({route}) => {
       offset: 10,
       searchQuery: '',
       dateQuery: '',
-      organizationId: Qid.id,
+      organizationId: Qid.id1.id,
     },
   });
   const live = useQuery(api.LIVE_VIDEOS_QUERY, {
     variables: {
-      organizationId: Qid.id,
+      organizationId: Qid.id1.id,
     },
   });
   const radio = useQuery(api.ALL_RADIO_QUERY, {
     variables: {
-      organizationId: Qid.id,
+      organizationId: Qid.id1.id,
     },
   });
   const podcast = useQuery(api.ALL_PODCASTS_QUERY, {
     variables: {
-      organizationId: Qid.id,
+      organizationId: Qid.id1.id,
     },
   });
   const media = useQuery(api.MEDIA_CENTERS_QUERY, {
@@ -92,14 +141,11 @@ const HomeScreen = ({route}) => {
       SetLiveRadio(radio.data.radioByOrganization);
     }
     if (podcast.data) {
-      console.log('PodCast', podcast.data.podcastsByOrganization);
       SetPodcasts(podcast.data.podcastsByOrganization);
     }
     if (media.data) {
-      console.log('Media', media.data.organizations);
       setData(media.data.organizations);
     }
-
     //----------------------------------------------
   }, [
     episode.data,
@@ -115,7 +161,15 @@ const HomeScreen = ({route}) => {
     setData,
   ]);
 
-  const thumbImage = getImage(data, Qid.id);
+  const thumbImage = getImage(data, Qid.id1.id);
+  const thumbImage1 = getImage(data, Qid.id2.id);
+  const thumbImage2 = getImage(data, Qid.id3.id);
+  let TImages = [
+    {id: 1, image: thumbImage1},
+    {id: 2, image: thumbImage},
+    {id: 3, image: thumbImage2},
+  ];
+
   return (
     <ScrollView>
       {/* <Main Heading */}
@@ -123,7 +177,7 @@ const HomeScreen = ({route}) => {
 
       {/* Center  */}
       <CenterComponent
-        thumbImage={thumbImage}
+        thumbImage={TImages}
         onPress={() => navigation.navigate('SearchCenter')}
       />
 

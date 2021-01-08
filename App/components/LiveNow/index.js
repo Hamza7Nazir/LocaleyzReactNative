@@ -1,7 +1,6 @@
 import React from 'react';
 import LoadingSpinner from '../LoadingSpinner';
 import NotFound from '../NotFound';
-import style from './style';
 import RenderLive from '../RenderLive';
 
 const LiveNowComponent = ({

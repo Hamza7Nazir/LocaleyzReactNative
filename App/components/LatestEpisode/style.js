@@ -46,6 +46,6 @@ export default StyleSheet.create({
   },
   parentStyle: {
     marginHorizontal: 15,
-    marginBottom: 90,
+    marginBottom: 80,
   },
 });

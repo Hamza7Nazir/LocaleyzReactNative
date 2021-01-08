@@ -15,6 +15,10 @@ export default StyleSheet.create({
     height: 50,
     width: 50,
   },
+  viewImageStyle: {
+    flexDirection: 'row',
+    marginRight: 10,
+  },
   iconStyle: {
     color: '#34b7eb',
     fontSize: 20,

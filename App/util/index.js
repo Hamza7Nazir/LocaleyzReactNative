@@ -9,14 +9,23 @@ const SetStorage = async (key, value) => {
   }
 };
 
-const GetStorage = async (key, SetQid) => {
+const GetStorage = async (key, SetQid, Qid) => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
+      console.log('Get Storage', JSON.parse(value));
       SetQid(JSON.parse(value));
     }
   } catch (error) {
     console.log('Error Retrieving Data');
+  }
+};
+
+const RemoveItem = async (key) => {
+  try {
+    AsyncStorage.removeItem(key);
+  } catch (error) {
+    console.log('Error Removing Item', error);
   }
 };
 
@@ -44,4 +53,4 @@ const TrimDescription = (desc) => {
   return desc;
 };
 
-export {SetStorage, GetStorage, getImage, TrimDescription};
+export {SetStorage, GetStorage, getImage, TrimDescription, RemoveItem};
