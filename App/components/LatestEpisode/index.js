@@ -34,12 +34,6 @@ const LatestEpisodeComponent = ({
     );
   };
 
-  // if (loading) {
-  //   return <LoadingSpinner />;
-  // }
-  // if (!channelList.length) {
-  //   return <NotFound typeName={emptyMessage} />;
-  // }
   return loading ? (
     <LoadingSpinner />
   ) : !channelList.length ? (
