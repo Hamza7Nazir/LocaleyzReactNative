@@ -57,8 +57,6 @@ const HomeScreen = ({route}) => {
     // if navigating from Search screen then setStorage
   }, [catId]);
 
-  console.log('Qid is ::::', Qid);
-
   const {data, setData} = useContext(MediaContext);
 
   const [LatestEpisodes, SetLatestEpisodes] = useState([]);
@@ -66,87 +64,66 @@ const HomeScreen = ({route}) => {
   const [LiveRadioState, SetLiveRadio] = useState([]);
   const [PodcastState, SetPodcasts] = useState([]);
 
-  const episode = useQuery(api.EPISODES_QUERY_FILTER, {
-    variables: {
-      limit: 10,
-      offset: 10,
-      searchQuery: '',
-      dateQuery: '',
-      organizationId: orgId,
+  const {data: episodeData, loading: episodeLoading} = useQuery(
+    api.EPISODES_QUERY_FILTER,
+    {
+      variables: {
+        limit: 10,
+        offset: 10,
+        searchQuery: '',
+        dateQuery: '',
+        organizationId: orgId,
+      },
     },
-  });
-  const live = useQuery(api.LIVE_VIDEOS_QUERY, {
-    variables: {
-      organizationId: orgId,
+  );
+  const {data: liveData, loading: liveLoading} = useQuery(
+    api.LIVE_VIDEOS_QUERY,
+    {
+      variables: {
+        organizationId: orgId,
+      },
     },
-  });
-  const radio = useQuery(api.ALL_RADIO_QUERY, {
-    variables: {
-      organizationId: orgId,
+  );
+  const {data: radioData, loading: radioLoading} = useQuery(
+    api.ALL_RADIO_QUERY,
+    {
+      variables: {
+        organizationId: orgId,
+      },
     },
-  });
-  const podcast = useQuery(api.ALL_PODCASTS_QUERY, {
-    variables: {
-      organizationId: orgId,
+  );
+  const {data: podcastData, loading: podcastLoading} = useQuery(
+    api.ALL_PODCASTS_QUERY,
+    {
+      variables: {
+        organizationId: orgId,
+      },
     },
-  });
-  const media = useQuery(api.MEDIA_CENTERS_QUERY, {
+  );
+  const {data: mediaData} = useQuery(api.MEDIA_CENTERS_QUERY, {
     variables: {
       $lat: '',
       $long: '',
     },
   });
   useEffect(() => {
-    if (episode.error) {
-      console.log('Episode error ::', episode.error);
+    if (episodeData) {
+      SetLatestEpisodes(episodeData.allEpisodes);
     }
-    if (live.error) {
-      console.log('Live error ::', live.error);
+    if (liveData) {
+      SetLiveNow(liveData.onAirLiveVideosByOrganization);
     }
-    if (radio.error) {
-      console.log('Radio error ::', radio.error);
+    if (radioData) {
+      SetLiveRadio(radioData.radioByOrganization);
     }
-    if (podcast.error) {
-      console.log('Podcast error ::', podcast.error);
+    if (podcastData) {
+      SetPodcasts(podcastData.podcastsByOrganization);
     }
-    if (media.error) {
-      console.log('media error ::', podcast.error);
-    }
-    //----------------------------------------------
-    if (episode.data) {
-      console.log('Episode', episode.data.allEpisodes);
-      SetLatestEpisodes(episode.data.allEpisodes);
-    }
-    if (live.data) {
-      console.log('Live', live.data.onAirLiveVideosByOrganization);
-      SetLiveNow(live.data.onAirLiveVideosByOrganization);
-    }
-    if (radio.data) {
-      console.log('Radio', radio.data.radioByOrganization);
-      SetLiveRadio(radio.data.radioByOrganization);
-    }
-    if (podcast.data) {
-      console.log('Podcast', podcast.data.podcastsByOrganization);
-      SetPodcasts(podcast.data.podcastsByOrganization);
-    }
-    if (media.data) {
-      console.log('Media', media.data.organizations);
-      setData(media.data.organizations);
+    if (mediaData) {
+      setData(mediaData.organizations);
     }
     //----------------------------------------------
-  }, [
-    episode.data,
-    episode.error,
-    live.data,
-    live.error,
-    radio.error,
-    radio.data,
-    podcast.error,
-    podcast.data,
-    media.data,
-    media.error,
-    setData,
-  ]);
+  }, [episodeData, liveData, radioData, podcastData, mediaData, setData]);
 
   const img1 = getImage(data, Qid.id1.id);
   const img2 = getImage(data, Qid.id2.id);
@@ -171,10 +148,9 @@ const HomeScreen = ({route}) => {
       <LatestEpisode
         channelList={LatestEpisodes}
         thumbImage={thumbImage}
-        loading={episode.loading}
+        loading={episodeLoading}
         emptyMessage="latest episodes"
         onPress={(id) => {
-          console.log('id', id);
           navigation.navigate('Video', {id: id});
         }}
       />
@@ -183,12 +159,11 @@ const HomeScreen = ({route}) => {
       <LiveNow
         channelName="stations"
         thumbImage={thumbImage}
-        loading={live.loading}
+        loading={liveLoading}
         emptyMessage="Live episodes"
         videos={LiveNowState}
         onPress={(id) => {
           navigation.navigate('Video', {id: id});
-          console.log(id);
         }}
       />
 
@@ -196,22 +171,20 @@ const HomeScreen = ({route}) => {
       <LiveNow
         channelName="station"
         thumbImage={thumbImage}
-        loading={radio.loading}
+        loading={radioLoading}
         emptyMessage="Radios"
         videos={LiveRadioState}
         onPress={(id) => {
           navigation.navigate('Video', {id: id});
-          console.log(id);
         }}
       />
 
       <Heading iconName="signal" headingName="Latest podcast espisodes" />
       <PodcastEpisode
         podcastList={PodcastState}
-        loading={podcast.loading}
+        loading={podcastLoading}
         onPress={(id) => {
           navigation.navigate('Video', {id: id});
-          console.log(id);
         }}
       />
     </ScrollView>
