@@ -12,13 +12,39 @@ const LatestEpisodeComponent = ({
   loading,
   thumbImage,
 }) => {
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-  if (!channelList.length) {
-    return <NotFound typeName={emptyMessage} />;
-  }
-  return (
+  const renderEpisodes = (item) => {
+    return (
+      <TouchableOpacity onPress={() => onPress(item.id)}>
+        <View style={style.listBlockStyle}>
+          <Image
+            style={style.imageStyle}
+            source={{
+              uri: item?.thumbnail?.url || '../../assets/images/imgNot.jpg',
+            }}
+          />
+          <Image style={style.iconOnImageStyle} source={{uri: thumbImage}} />
+          <Text numberOfLines={1} style={style.listTextStyle}>
+            {item.title}
+          </Text>
+          <Text numberOfLines={2} style={style.listDetailStyle}>
+            {TrimDescription(item.description)}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  // if (loading) {
+  //   return <LoadingSpinner />;
+  // }
+  // if (!channelList.length) {
+  //   return <NotFound typeName={emptyMessage} />;
+  // }
+  return loading ? (
+    <LoadingSpinner />
+  ) : !channelList.length ? (
+    <NotFound typeName={emptyMessage} />
+  ) : (
     <View style={style.parentStyle}>
       <FlatList
         data={channelList}
@@ -26,29 +52,7 @@ const LatestEpisodeComponent = ({
         showsHorizontalScrollIndicator={false}
         keyExtractor={(obj) => obj.title}
         renderItem={({item}) => {
-          return (
-            <TouchableOpacity onPress={() => onPress(item.id)}>
-              <View style={style.listBlockStyle}>
-                <Image
-                  style={style.imageStyle}
-                  source={{
-                    uri:
-                      item?.thumbnail?.url || '../../assets/images/imgNot.jpg',
-                  }}
-                />
-                <Image
-                  style={style.iconOnImageStyle}
-                  source={{uri: thumbImage}}
-                />
-                <Text numberOfLines={1} style={style.listTextStyle}>
-                  {item.title}
-                </Text>
-                <Text numberOfLines={2} style={style.listDetailStyle}>
-                  {TrimDescription(item.description)}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
+          return renderEpisodes(item);
         }}
       />
     </View>

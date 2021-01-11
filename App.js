@@ -1,18 +1,20 @@
 import React, {useState} from 'react';
-import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeScreen from './App/screens/HomeScreen';
 import Header from './App/components/Header';
-import VideoScreen from './App/screens/VideoScreen';
-import ScheduleScreen from './App/screens/ScheduleScreen';
-import RadioScreen from './App/screens/RadioScreen';
-import SearchCenterScreen from './App/screens/SearchCenterScreen';
 import FontTelloIcon from './App/components/FontTelloIcon';
 import {ApolloClient, InMemoryCache} from '@apollo/client';
 import {ApolloProvider} from '@apollo/react-hooks';
 import MediaContext from './App/Context/MediaContext';
+import {
+  HomeScreen,
+  SearchCenterScreen,
+  VideoScreen,
+  RadioScreen,
+  ScheduleScreen,
+} from './App/screens';
+import {Routes} from './App/util';
 
 const client = new ApolloClient({
   uri: 'https://localeyz-app-staging-api.herokuapp.com/graphql',
@@ -47,10 +49,10 @@ const MyTab = () => {
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
       }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Video" component={VideoScreen} />
-      <Tab.Screen name="Radio" component={RadioScreen} />
-      <Tab.Screen name="Schedule" component={ScheduleScreen} />
+      <Tab.Screen name={Routes.Home} component={HomeScreen} />
+      <Tab.Screen name={Routes.Video} component={VideoScreen} />
+      <Tab.Screen name={Routes.Radio} component={RadioScreen} />
+      <Tab.Screen name={Routes.Schedule} component={ScheduleScreen} />
     </Tab.Navigator>
   );
 };
@@ -66,7 +68,7 @@ const MyStack = () => {
             backgroundColor: '#ffff',
           },
           headerTintColor: 'black',
-          cardStyle: {backgroundColor: '#fff'}, //Changes background color of the whole screen
+          cardStyle: {backgroundColor: '#fff'},
         }}
       />
       <Stack.Screen
@@ -78,7 +80,7 @@ const MyStack = () => {
             backgroundColor: '#ffff',
           },
           headerTintColor: 'black',
-          cardStyle: {backgroundColor: '#fff'}, //Changes background color of the whole screen
+          cardStyle: {backgroundColor: '#fff'},
         }}
       />
     </Stack.Navigator>

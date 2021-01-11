@@ -4,6 +4,32 @@ import style from './style';
 import LoadingSpinner from '../LoadingSpinner';
 
 const RenderLive = ({data, channelName, thumbImage, onPress}) => {
+  const renderLive = (item) => {
+    return (
+      <TouchableOpacity onPress={() => onPress(item.id)}>
+        <View>
+          <Image
+            style={style.videoStyle}
+            source={{uri: item.image || '../../assets/images/imgNot.jpg'}}
+          />
+          <View style={style.iconViewStyle}>
+            <Image style={style.iconOnImageStyle} source={{uri: thumbImage}} />
+            <Text style={style.iconTextStyle}>
+              {channelName === 'station'
+                ? (channelName = item.station)
+                : (channelName = item.stations)}
+            </Text>
+          </View>
+          <Text numberOfLines={1} style={style.listTextStyle}>
+            {item.title}
+          </Text>
+          <Text numberOfLines={2} style={style.listTextDetailStyle}>
+            {item.description}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   return (
     <View style={style.parentStyle}>
       <FlatList
@@ -13,33 +39,7 @@ const RenderLive = ({data, channelName, thumbImage, onPress}) => {
         showsHorizontalScrollIndicator={false}
         ListEmptyComponent={<LoadingSpinner />}
         renderItem={({item}) => {
-          return (
-            <TouchableOpacity onPress={() => onPress(item.id)}>
-              <View>
-                <Image
-                  style={style.videoStyle}
-                  source={{uri: item.image || '../../assets/images/imgNot.jpg'}}
-                />
-                <View style={style.iconViewStyle}>
-                  <Image
-                    style={style.iconOnImageStyle}
-                    source={{uri: thumbImage}}
-                  />
-                  <Text style={style.iconTextStyle}>
-                    {channelName === 'station'
-                      ? (channelName = item.station)
-                      : (channelName = item.stations)}
-                  </Text>
-                </View>
-                <Text numberOfLines={1} style={style.listTextStyle}>
-                  {item.title}
-                </Text>
-                <Text numberOfLines={2} style={style.listTextDetailStyle}>
-                  {item.description}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
+          return renderLive(item);
         }}
       />
     </View>

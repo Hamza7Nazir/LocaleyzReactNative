@@ -1,14 +1,19 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {ScrollView, Text, StyleSheet} from 'react-native';
-import CenterComponent from '../components/FindCenter';
-
-import {LatestEpisode, LiveNow, Heading, PodcastEpisode} from '../components';
+import CenterComponent from '../../components/FindCenter';
+import {
+  LatestEpisode,
+  LiveNow,
+  Heading,
+  PodcastEpisode,
+} from '../../components';
 import {useNavigation} from '@react-navigation/native';
-
-import api from '../APIs/Queries';
+import api from '../../APIs/Queries';
 import {useQuery} from '@apollo/react-hooks';
-import MediaContext from '../Context/MediaContext';
-import {GetStorage, SetStorage, getImage} from '../util';
+import MediaContext from '../../Context/MediaContext';
+import {GetStorage, SetStorage, getImage} from '../../util';
+import {Routes} from '../../util';
+import style from './style';
 
 const HomeScreen = ({route}) => {
   const navigation = useNavigation();
@@ -54,7 +59,7 @@ const HomeScreen = ({route}) => {
 
       SetStorage('id', obj);
     }
-    // if navigating from Search screen then setStorage
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [catId]);
 
   const {data, setData} = useContext(MediaContext);
@@ -140,7 +145,7 @@ const HomeScreen = ({route}) => {
 
       <CenterComponent
         thumbImage={TImages}
-        onPress1={() => navigation.navigate('SearchCenter')}
+        onPress1={() => navigation.navigate(Routes.SearchCenter)}
         onPress2={(id) => setOrgId(id)}
       />
 
@@ -151,7 +156,7 @@ const HomeScreen = ({route}) => {
         loading={episodeLoading}
         emptyMessage="latest episodes"
         onPress={(id) => {
-          navigation.navigate('Video', {id: id});
+          navigation.navigate(Routes.Video, {id: id});
         }}
       />
 
@@ -163,7 +168,7 @@ const HomeScreen = ({route}) => {
         emptyMessage="Live episodes"
         videos={LiveNowState}
         onPress={(id) => {
-          navigation.navigate('Video', {id: id});
+          navigation.navigate(Routes.Video, {id: id});
         }}
       />
 
@@ -175,7 +180,7 @@ const HomeScreen = ({route}) => {
         emptyMessage="Radios"
         videos={LiveRadioState}
         onPress={(id) => {
-          navigation.navigate('Video', {id: id});
+          navigation.navigate(Routes.Video, {id: id});
         }}
       />
 
@@ -184,19 +189,11 @@ const HomeScreen = ({route}) => {
         podcastList={PodcastState}
         loading={podcastLoading}
         onPress={(id) => {
-          navigation.navigate('Video', {id: id});
+          navigation.navigate(Routes.Video, {id: id});
         }}
       />
     </ScrollView>
   );
 };
-const style = StyleSheet.create({
-  headingStyle: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    marginHorizontal: 15,
-    marginVertical: 15,
-  },
-});
 
 export default HomeScreen;

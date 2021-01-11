@@ -11,14 +11,11 @@ const LiveNowComponent = ({
   loading,
   thumbImage,
 }) => {
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-  if (!videos.length) {
-    return <NotFound typeName={emptyMessage} />;
-  }
-
-  return (
+  return loading ? (
+    <LoadingSpinner />
+  ) : !videos.length ? (
+    <NotFound typeName={emptyMessage} />
+  ) : (
     <RenderLive
       data={videos}
       thumbImage={thumbImage}

@@ -4,6 +4,16 @@ import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import style from './style';
 
 const CenterComponent = ({onPress1, thumbImage, onPress2}) => {
+  const RenderLatestVisits = (item) => {
+    return (
+      <TouchableOpacity onPress={() => onPress2(item.id)}>
+        <View style={style.viewImageStyle}>
+          <Image style={style.imageStyle} source={{uri: item.image}} />
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View style={style.parentStyle}>
       <FlatList
@@ -12,13 +22,7 @@ const CenterComponent = ({onPress1, thumbImage, onPress2}) => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(pod) => pod.id}
         renderItem={({item}) => {
-          return (
-            <TouchableOpacity onPress={() => onPress2(item.id)}>
-              <View style={style.viewImageStyle}>
-                <Image style={style.imageStyle} source={{uri: item.image}} />
-              </View>
-            </TouchableOpacity>
-          );
+          return RenderLatestVisits(item);
         }}
       />
 

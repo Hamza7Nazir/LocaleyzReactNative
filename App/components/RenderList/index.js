@@ -13,7 +13,38 @@ const RenderList = ({
   listType,
 }) => {
   let subHeading = '';
-
+  const renderList = (item) => {
+    return (
+      <TouchableOpacity onPress={() => onPress(item.id)}>
+        <View
+          style={
+            listType === 'FindMediaCenters'
+              ? style.mediaCenterStyle
+              : style.listBarStyle
+          }>
+          <Image
+            style={style.imageStyle}
+            source={{
+              uri: imageType === 'square' ? item.squareImage : item.image,
+            }}
+          />
+          <View style={style.textWrap}>
+            <Text numberOfLines={1} style={style.titleStyle}>
+              {item.title}
+            </Text>
+            <Text numberOfLines={1} style={style.detailStyle}>
+              {descriptionType === 'address'
+                ? (subHeading = item.address)
+                : (subHeading = item.description)}
+            </Text>
+          </View>
+          <View style={style.iconCameraStyle}>
+            <FontTelloIcon name={iconName} color={'#000'} size={25} />
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  };
   return (
     <View style={style.parentStyle}>
       <FlatList
@@ -22,36 +53,7 @@ const RenderList = ({
         ListEmptyComponent={<LoadingSpinner />}
         keyExtractor={(pod) => pod.id.toString()}
         renderItem={({item}) => {
-          return (
-            <TouchableOpacity onPress={() => onPress(item.id)}>
-              <View
-                style={
-                  listType === 'FindMediaCenters'
-                    ? style.mediaCenterStyle
-                    : style.listBarStyle
-                }>
-                <Image
-                  style={style.imageStyle}
-                  source={{
-                    uri: imageType === 'square' ? item.squareImage : item.image,
-                  }}
-                />
-                <View style={style.textWrap}>
-                  <Text numberOfLines={1} style={style.titleStyle}>
-                    {item.title}
-                  </Text>
-                  <Text numberOfLines={1} style={style.detailStyle}>
-                    {descriptionType === 'address'
-                      ? (subHeading = item.address)
-                      : (subHeading = item.description)}
-                  </Text>
-                </View>
-                <View style={style.iconCameraStyle}>
-                  <FontTelloIcon name={iconName} color={'#000'} size={25} />
-                </View>
-              </View>
-            </TouchableOpacity>
-          );
+          return renderList(item);
         }}
       />
     </View>

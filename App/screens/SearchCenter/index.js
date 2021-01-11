@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
 import {ScrollView} from 'react-native';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../../components/SearchBar';
 
-import RenderList from '../components/RenderList';
-import MediaContext from '../Context/MediaContext';
+import RenderList from '../../components/RenderList';
+import MediaContext from '../../Context/MediaContext';
 import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../../util';
 
 const SearchCenterScreen = () => {
   const {data} = useContext(MediaContext);
@@ -16,8 +17,7 @@ const SearchCenterScreen = () => {
       <RenderList
         data={data}
         onPress={(id) => {
-          console.log('id', id);
-          navigation.navigate('Home', {id: id});
+          navigation.navigate(Routes.Home, {id: id});
         }}
         imageType="square"
         descriptionType="address"

@@ -52,5 +52,17 @@ const TrimDescription = (desc) => {
   }
   return desc;
 };
+let Routes = {
+  HomeScreen: 'HomeScreen',
+  Home: 'Home',
+  VideoScreen: 'VideoScreen',
+  Video: 'Video',
+  RadioScreen: 'RadioScreen',
+  Radio: 'Radio',
+  ScheduleScreen: 'ScheduleScreen',
+  Schedule: 'Schedule',
+  SearchCenterScreen: 'SearchCenterScreen',
+  SearchCenter: 'SearchCenter',
+};
 
-export {SetStorage, GetStorage, getImage, TrimDescription, RemoveItem};
+export {SetStorage, GetStorage, getImage, TrimDescription, RemoveItem, Routes};

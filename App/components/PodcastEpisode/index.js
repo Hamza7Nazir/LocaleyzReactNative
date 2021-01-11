@@ -10,7 +10,11 @@ const PodcastEpisode = ({podcastList, onPress, loading}) => {
   if (!podcastList.length) {
     return <NotFound typeName="Podcasts" />;
   }
-  return (
+  return loading ? (
+    <LoadingSpinner />
+  ) : !podcastList.length ? (
+    <NotFound typeName="Podcasts" />
+  ) : (
     <RenderList
       data={podcastList}
       onPress={onPress}
