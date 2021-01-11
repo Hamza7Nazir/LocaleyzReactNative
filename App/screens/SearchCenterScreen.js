@@ -18,7 +18,6 @@ const SearchCenterScreen = () => {
         onPress={(id) => {
           console.log('id', id);
           navigation.navigate('Home', {id: id});
-          // Passing organization Id to home screen
         }}
         imageType="square"
         descriptionType="address"

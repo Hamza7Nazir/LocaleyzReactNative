@@ -29,12 +29,10 @@ const RenderList = ({
                   listType === 'FindMediaCenters'
                     ? style.mediaCenterStyle
                     : style.listBarStyle
-                  // Styling choice
                 }>
                 <Image
                   style={style.imageStyle}
                   source={{
-                    // change in image
                     uri: imageType === 'square' ? item.squareImage : item.image,
                   }}
                 />
@@ -43,7 +41,6 @@ const RenderList = ({
                     {item.title}
                   </Text>
                   <Text numberOfLines={1} style={style.detailStyle}>
-                    {/* change in address */}
                     {descriptionType === 'address'
                       ? (subHeading = item.address)
                       : (subHeading = item.description)}

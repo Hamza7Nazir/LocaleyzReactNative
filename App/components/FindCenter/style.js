@@ -5,7 +5,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 15, // will be kept same for all components
+    marginHorizontal: 15,
     marginBottom: 35,
   },
   imageStyle: {

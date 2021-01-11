@@ -5,7 +5,7 @@ import CenterComponent from '../components/FindCenter';
 import {LatestEpisode, LiveNow, Heading, PodcastEpisode} from '../components';
 import {useNavigation} from '@react-navigation/native';
 
-import api from '../components/api';
+import api from '../APIs/Queries';
 import {useQuery} from '@apollo/react-hooks';
 import MediaContext from '../Context/MediaContext';
 import {GetStorage, SetStorage, getImage} from '../util';
@@ -159,17 +159,14 @@ const HomeScreen = ({route}) => {
   const thumbImage = getImage(data, orgId);
   return (
     <ScrollView>
-      {/* <Main Heading */}
       <Text style={style.headingStyle}>Your recent picks</Text>
 
-      {/* Center  */}
       <CenterComponent
         thumbImage={TImages}
         onPress1={() => navigation.navigate('SearchCenter')}
         onPress2={(id) => setOrgId(id)}
       />
 
-      {/* Latest Espisode */}
       <Heading iconName="videocam-1" headingName="Latest espisodes" />
       <LatestEpisode
         channelList={LatestEpisodes}
@@ -181,7 +178,7 @@ const HomeScreen = ({route}) => {
           navigation.navigate('Video', {id: id});
         }}
       />
-      {/* Live Now */}
+
       <Heading iconName="videocam-1" headingName="Live Now" />
       <LiveNow
         channelName="stations"
@@ -194,7 +191,7 @@ const HomeScreen = ({route}) => {
           console.log(id);
         }}
       />
-      {/* Live Radio*/}
+
       <Heading iconName="signal" headingName="Live Radio" />
       <LiveNow
         channelName="station"
@@ -207,7 +204,7 @@ const HomeScreen = ({route}) => {
           console.log(id);
         }}
       />
-      {/* Latest Podcast */}
+
       <Heading iconName="signal" headingName="Latest podcast espisodes" />
       <PodcastEpisode
         podcastList={PodcastState}
