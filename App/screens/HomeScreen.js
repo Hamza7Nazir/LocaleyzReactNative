@@ -25,30 +25,33 @@ const HomeScreen = ({route}) => {
   const [Counter, SetCounter] = useState(1);
 
   useEffect(() => {
-    if (Counter === 1) {
-      obj.id1 = catId;
-      obj.id2 = Qid.id2;
-      obj.id3 = Qid.id3;
-
-      SetCounter(Counter + 1);
-    }
-    if (Counter === 2) {
-      obj.id1 = Qid.id1;
-      obj.id2 = catId;
-      obj.id3 = Qid.id3;
-
-      SetCounter(Counter + 1);
-    }
-    if (Counter === 3) {
-      obj.id1 = Qid.id1;
-      obj.id2 = Qid.id2;
-      obj.id3 = catId;
-
-      SetCounter(1);
-    }
-
-    SetStorage('id', obj);
     GetStorage('id', SetQid);
+    if (catId !== '') {
+      if (Counter === 1) {
+        obj.id1 = catId;
+        obj.id2 = Qid.id2;
+        obj.id3 = Qid.id3;
+
+        SetCounter(Counter + 1);
+      }
+      if (Counter === 2) {
+        obj.id1 = Qid.id1;
+        obj.id2 = catId;
+        obj.id3 = Qid.id3;
+
+        SetCounter(Counter + 1);
+      }
+      if (Counter === 3) {
+        obj.id1 = Qid.id1;
+        obj.id2 = Qid.id2;
+        obj.id3 = catId;
+
+        SetCounter(1);
+      }
+
+      SetStorage('id', obj);
+    }
+
     // if navigating from Search screen then setStorage
   }, [catId]);
 
@@ -56,7 +59,7 @@ const HomeScreen = ({route}) => {
   //   GetStorage('id', SetQid);
   // }, [catId]); // if navigated from Search screen then fetch new id
 
-  console.log('Qid is ::::', Qid.id1.id);
+  console.log('Qid is ::::', Qid);
 
   //-------------------------------------------------------------------
   // const [Qid, SetQid] = useState(0);
