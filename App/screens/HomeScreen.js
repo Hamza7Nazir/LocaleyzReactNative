@@ -12,17 +12,20 @@ import {GetStorage, SetStorage, getImage} from '../util';
 
 const HomeScreen = ({route}) => {
   const navigation = useNavigation();
+  const [Counter, SetCounter] = useState(1);
+  const [orgId, setOrgId] = useState();
   const [Qid, SetQid] = useState({
     id1: '1',
     id2: '1',
     id3: '1',
   });
+
   let obj = {};
   let catId = '';
+
   if (route.params !== undefined) {
     catId = route.params;
   }
-  const [Counter, SetCounter] = useState(1);
 
   useEffect(() => {
     GetStorage('id', SetQid);
@@ -51,36 +54,15 @@ const HomeScreen = ({route}) => {
 
       SetStorage('id', obj);
     }
-
     // if navigating from Search screen then setStorage
   }, [catId]);
 
-  // useEffect(() => {
-  //   GetStorage('id', SetQid);
-  // }, [catId]); // if navigated from Search screen then fetch new id
-
   console.log('Qid is ::::', Qid);
-
-  //-------------------------------------------------------------------
-  // const [Qid, SetQid] = useState(0);
-
-  // let catId = 0;
-  // if (route.params !== undefined) {
-  //   catId = route.params;
-  //   SetStorage('id', catId); // if navigating from Search screen then setStorage
-  // }
-
-  // useEffect(() => {
-  //   GetStorage('id', SetQid);
-  // }, [catId]); // if navigated from Search screen then fetch new id
-
-  // console.log('Qid is ::::', Qid);
 
   const {data, setData} = useContext(MediaContext);
 
   const [LatestEpisodes, SetLatestEpisodes] = useState([]);
   const [LiveNowState, SetLiveNow] = useState([]);
-
   const [LiveRadioState, SetLiveRadio] = useState([]);
   const [PodcastState, SetPodcasts] = useState([]);
 
@@ -90,22 +72,22 @@ const HomeScreen = ({route}) => {
       offset: 10,
       searchQuery: '',
       dateQuery: '',
-      organizationId: Qid.id1.id,
+      organizationId: orgId,
     },
   });
   const live = useQuery(api.LIVE_VIDEOS_QUERY, {
     variables: {
-      organizationId: Qid.id1.id,
+      organizationId: orgId,
     },
   });
   const radio = useQuery(api.ALL_RADIO_QUERY, {
     variables: {
-      organizationId: Qid.id1.id,
+      organizationId: orgId,
     },
   });
   const podcast = useQuery(api.ALL_PODCASTS_QUERY, {
     variables: {
-      organizationId: Qid.id1.id,
+      organizationId: orgId,
     },
   });
   const media = useQuery(api.MEDIA_CENTERS_QUERY, {
@@ -144,9 +126,11 @@ const HomeScreen = ({route}) => {
       SetLiveRadio(radio.data.radioByOrganization);
     }
     if (podcast.data) {
+      console.log('Podcast', podcast.data.podcastsByOrganization);
       SetPodcasts(podcast.data.podcastsByOrganization);
     }
     if (media.data) {
+      console.log('Media', media.data.organizations);
       setData(media.data.organizations);
     }
     //----------------------------------------------
@@ -164,15 +148,15 @@ const HomeScreen = ({route}) => {
     setData,
   ]);
 
-  const thumbImage = getImage(data, Qid.id1.id);
-  const thumbImage1 = getImage(data, Qid.id2.id);
-  const thumbImage2 = getImage(data, Qid.id3.id);
+  const img1 = getImage(data, Qid.id1.id);
+  const img2 = getImage(data, Qid.id2.id);
+  const img3 = getImage(data, Qid.id3.id);
   let TImages = [
-    {id: 1, image: thumbImage1},
-    {id: 2, image: thumbImage},
-    {id: 3, image: thumbImage2},
+    {id: Qid.id1.id, image: img1},
+    {id: Qid.id2.id, image: img2},
+    {id: Qid.id3.id, image: img3},
   ];
-
+  const thumbImage = getImage(data, orgId);
   return (
     <ScrollView>
       {/* <Main Heading */}
@@ -181,7 +165,8 @@ const HomeScreen = ({route}) => {
       {/* Center  */}
       <CenterComponent
         thumbImage={TImages}
-        onPress={() => navigation.navigate('SearchCenter')}
+        onPress1={() => navigation.navigate('SearchCenter')}
+        onPress2={(id) => setOrgId(id)}
       />
 
       {/* Latest Espisode */}
