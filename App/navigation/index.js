@@ -67,7 +67,7 @@ const MyStack = () => {
             backgroundColor: '#ffff',
           },
           headerTintColor: 'black',
-          cardStyle: {backgroundColor: '#fff'},
+          cardStyle: {backgroundColor: '#ffff'},
         }}
       />
       <Stack.Screen
@@ -79,7 +79,7 @@ const MyStack = () => {
             backgroundColor: '#ffff',
           },
           headerTintColor: 'black',
-          cardStyle: {backgroundColor: '#fff'},
+          cardStyle: {backgroundColor: '#ffff'},
         }}
       />
     </Stack.Navigator>

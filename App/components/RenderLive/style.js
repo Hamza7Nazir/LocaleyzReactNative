@@ -57,6 +57,7 @@ export default StyleSheet.create({
     borderRadius: 45,
     left: 10,
     margin: 5,
+    marginRight: 60,
     paddingRight: 8,
     position: 'absolute',
     alignItems: 'center',

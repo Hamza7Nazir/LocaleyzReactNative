@@ -14,7 +14,7 @@ const RenderLive = ({data, channelName, thumbImage, onPress}) => {
           />
           <View style={style.iconViewStyle}>
             <Image style={style.iconOnImageStyle} source={{uri: thumbImage}} />
-            <Text style={style.iconTextStyle}>
+            <Text style={style.iconTextStyle} numberOfLines={2}>
               {channelName === 'station'
                 ? (channelName = item.station)
                 : (channelName = item.stations)}

@@ -140,7 +140,7 @@ const HomeScreen = ({route}) => {
   ];
   const thumbImage = getImage(data, orgId);
   return (
-    <ScrollView>
+    <ScrollView style={style.pageStyle}>
       <Text style={style.headingStyle}>Your recent picks</Text>
 
       <CenterComponent

@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-
+import {View, ScrollView, Text} from 'react-native';
+import style from './style';
 const ScheduleScreen = () => {
   return (
-    <View>
+    <ScrollView style={style.pageStyle}>
       <Text>ScheduleScreen</Text>
-    </View>
+    </ScrollView>
   );
 };
 

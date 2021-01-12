@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-
+import {View, ScrollView, Text} from 'react-native';
+import style from './style';
 const VideoScreen = ({route}) => {
   return (
-    <View>
+    <ScrollView style={style.pageStyle}>
       <Text>This is Video Screen</Text>
-    </View>
+    </ScrollView>
   );
 };
 
