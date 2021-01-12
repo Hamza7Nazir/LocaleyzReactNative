@@ -27,7 +27,12 @@ const SearchCenterScreen = () => {
               ? data
               : data.filter((media) => {
                   return (
-                    media.title.includes(text) || media.address.includes(text)
+                    media.title
+                      .toLowerCase()
+                      .includes(text.trim().toLowerCase()) ||
+                    media.address
+                      .toLowerCase()
+                      .includes(text.trim().toLowerCase())
                   );
                 })
           }
