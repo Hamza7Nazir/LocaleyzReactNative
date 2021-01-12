@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import {ScrollView} from 'react-native';
 import SearchBar from '../../components/SearchBar';
 
@@ -9,20 +9,36 @@ import {Routes} from '../../util';
 
 const SearchCenterScreen = () => {
   const {data} = useContext(MediaContext);
+  const [text, setText] = useState('');
   const navigation = useNavigation();
 
   return (
     <ScrollView>
-      <SearchBar />
-      <RenderList
-        data={data}
-        onPress={(id) => {
-          navigation.navigate(Routes.Home, {id: id});
-        }}
-        imageType="square"
-        descriptionType="address"
-        listType="FindMediaCenters"
+      <SearchBar
+        autoCapitalize="none"
+        autoCorrect={false}
+        text={text}
+        setText={(val) => setText(val)}
       />
+      {data && (
+        <RenderList
+          data={
+            text === undefined || text === ''
+              ? data
+              : data.filter((media) => {
+                  return (
+                    media.title.includes(text) || media.address.includes(text)
+                  );
+                })
+          }
+          onPress={(id) => {
+            navigation.navigate(Routes.Home, {id: id});
+          }}
+          imageType="square"
+          descriptionType="address"
+          listType="FindMediaCenters"
+        />
+      )}
     </ScrollView>
   );
 };

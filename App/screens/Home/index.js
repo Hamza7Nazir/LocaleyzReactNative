@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {ScrollView, Text, StyleSheet} from 'react-native';
+import {ScrollView, Text} from 'react-native';
 import CenterComponent from '../../components/FindCenter';
 import {
   LatestEpisode,
@@ -21,8 +21,8 @@ const HomeScreen = ({route}) => {
   const [orgId, setOrgId] = useState();
   const [Qid, SetQid] = useState({
     id1: '1',
-    id2: '1',
-    id3: '1',
+    id2: '2',
+    id3: '3',
   });
 
   let obj = {};
@@ -34,7 +34,13 @@ const HomeScreen = ({route}) => {
 
   useEffect(() => {
     GetStorage('id', SetQid);
-    if (catId !== '') {
+
+    if (
+      catId !== '' &&
+      Qid.id1.id !== catId.id &&
+      Qid.id2.id !== catId.id &&
+      Qid.id3.id !== catId.id
+    ) {
       if (Counter === 1) {
         obj.id1 = catId;
         obj.id2 = Qid.id2;
@@ -59,6 +65,8 @@ const HomeScreen = ({route}) => {
 
       SetStorage('id', obj);
     }
+    GetStorage('id', SetQid);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [catId]);
 
@@ -133,11 +141,13 @@ const HomeScreen = ({route}) => {
   const img1 = getImage(data, Qid.id1.id);
   const img2 = getImage(data, Qid.id2.id);
   const img3 = getImage(data, Qid.id3.id);
+
   let TImages = [
     {id: Qid.id1.id, image: img1},
     {id: Qid.id2.id, image: img2},
     {id: Qid.id3.id, image: img3},
   ];
+
   const thumbImage = getImage(data, orgId);
   return (
     <ScrollView style={style.pageStyle}>

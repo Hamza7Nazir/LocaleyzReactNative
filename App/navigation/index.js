@@ -63,11 +63,6 @@ const MyStack = () => {
         component={MyTab}
         options={{
           headerTitle: (props) => <Header title="Localeyz" {...props} />,
-          headerStyle: {
-            backgroundColor: '#ffff',
-          },
-          headerTintColor: 'black',
-          cardStyle: {backgroundColor: '#ffff'},
         }}
       />
       <Stack.Screen

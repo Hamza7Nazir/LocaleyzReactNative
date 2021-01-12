@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Text} from 'react-native';
+import {ScrollView, Text} from 'react-native';
 import style from './style';
 const ScheduleScreen = () => {
   return (
