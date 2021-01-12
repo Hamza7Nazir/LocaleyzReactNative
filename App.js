@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import MediaProvider from './App/Context/MediaProvider';
-import Nav from './App/navigation';
+import AppNavigator from './App/navigation';
 
 export default function App() {
   return (
     <MediaProvider>
-      <Nav />
+      <AppNavigator />
     </MediaProvider>
   );
 }

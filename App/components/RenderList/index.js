@@ -12,7 +12,6 @@ const RenderList = ({
   descriptionType,
   listType,
 }) => {
-  let subHeading = '';
   const renderList = (item) => {
     return (
       <TouchableOpacity onPress={() => onPress(item.id)}>
@@ -33,9 +32,7 @@ const RenderList = ({
               {item.title}
             </Text>
             <Text numberOfLines={1} style={style.detailStyle}>
-              {descriptionType === 'address'
-                ? (subHeading = item.address)
-                : (subHeading = item.description)}
+              {descriptionType === 'address' ? item.address : item.description}
             </Text>
           </View>
           <View style={style.iconCameraStyle}>
