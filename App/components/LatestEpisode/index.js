@@ -45,9 +45,7 @@ const LatestEpisodeComponent = ({
         horizontal
         showsHorizontalScrollIndicator={false}
         keyExtractor={(obj) => obj.title}
-        renderItem={({item}) => {
-          return renderEpisodes(item);
-        }}
+        renderItem={({item}) => renderEpisodes(item)}
       />
     </View>
   );

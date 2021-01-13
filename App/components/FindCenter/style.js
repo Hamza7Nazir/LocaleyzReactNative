@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-
+import {Colors} from '../../constants';
 export default StyleSheet.create({
   parentStyle: {
     alignItems: 'center',
@@ -8,24 +8,32 @@ export default StyleSheet.create({
     marginHorizontal: 15,
     marginBottom: 35,
   },
-  imageStyle: {
-    borderColor: '#34b7eb',
+  unselectedImageStyle: {
+    borderColor: Colors.lightGrey,
     borderRadius: 45,
     borderWidth: 2,
     height: 50,
     width: 50,
   },
+  selectedImageStyle: {
+    borderColor: Colors.lightBlue,
+    borderRadius: 45,
+    borderWidth: 3,
+    height: 50,
+    width: 50,
+  },
+
   viewImageStyle: {
     flexDirection: 'row',
     marginRight: 10,
   },
   iconStyle: {
-    color: '#34b7eb',
+    color: Colors.lightBlue,
     fontSize: 20,
   },
   touchableParentStyle: {
     alignItems: 'center',
-    borderColor: '#34b7eb',
+    borderColor: Colors.lightBlue,
     borderRadius: 30,
     borderWidth: 1,
     flexDirection: 'row',
@@ -34,7 +42,7 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
   },
   textStyle: {
-    color: '#34b7eb',
+    color: Colors.lightBlue,
     fontSize: 20,
     fontFamily: 'Iowan Old Style',
   },

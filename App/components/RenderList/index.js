@@ -49,9 +49,7 @@ const RenderList = ({
         horizontal={false}
         ListEmptyComponent={<LoadingSpinner />}
         keyExtractor={(pod) => pod.id.toString()}
-        renderItem={({item}) => {
-          return renderList(item);
-        }}
+        renderItem={({item}) => renderList(item)}
       />
     </View>
   );

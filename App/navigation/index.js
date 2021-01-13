@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {Routes} from '../util';
+import {Routes} from '../constants';
 import {
   HomeScreen,
   VideoScreen,
@@ -12,15 +12,9 @@ import {
 } from '../screens';
 import {Header} from '../components';
 import FontTelloIcon from '../components/FontTelloIcon';
-import {ApolloClient, InMemoryCache} from '@apollo/client';
 import {ApolloProvider} from '@apollo/react-hooks';
-
-const client = new ApolloClient({
-  uri: 'https://localeyz-app-staging-api.herokuapp.com/graphql',
-
-  cache: new InMemoryCache(),
-});
-
+import client from './apolloClient';
+import {Colors} from '../constants';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const MyTab = () => {
@@ -71,10 +65,10 @@ const MyStack = () => {
         options={{
           headerTitle: (props) => <Header title="Localeyz" {...props} />,
           headerStyle: {
-            backgroundColor: '#ffff',
+            backgroundColor: Colors.white,
           },
-          headerTintColor: 'black',
-          cardStyle: {backgroundColor: '#ffff'},
+          headerTintColor: Colors.black,
+          cardStyle: {backgroundColor: Colors.white},
         }}
       />
     </Stack.Navigator>

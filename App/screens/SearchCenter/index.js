@@ -5,12 +5,20 @@ import SearchBar from '../../components/SearchBar';
 import RenderList from '../../components/RenderList';
 import MediaContext from '../../Context/MediaContext';
 import {useNavigation} from '@react-navigation/native';
-import {Routes} from '../../util';
+import {Routes} from '../../constants';
 
 const SearchCenterScreen = () => {
   const {data} = useContext(MediaContext);
   const [text, setText] = useState('');
   const navigation = useNavigation();
+
+  const filterData = (list) => {
+    return list.filter(
+      (media) =>
+        media.title.toLowerCase().includes(text.trim().toLowerCase()) ||
+        media.address.toLowerCase().includes(text.trim().toLowerCase()),
+    );
+  };
 
   return (
     <ScrollView>
@@ -22,20 +30,7 @@ const SearchCenterScreen = () => {
       />
       {data && (
         <RenderList
-          data={
-            text === undefined || text === ''
-              ? data
-              : data.filter((media) => {
-                  return (
-                    media.title
-                      .toLowerCase()
-                      .includes(text.trim().toLowerCase()) ||
-                    media.address
-                      .toLowerCase()
-                      .includes(text.trim().toLowerCase())
-                  );
-                })
-          }
+          data={filterData(data)}
           onPress={(id) => {
             navigation.navigate(Routes.Home, {id: id});
           }}

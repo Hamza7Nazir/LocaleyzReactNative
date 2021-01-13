@@ -8,67 +8,18 @@ import {
   PodcastEpisode,
 } from '../../components';
 import {useNavigation} from '@react-navigation/native';
-import api from '../../APIs/Queries';
+import api from '../../api/Queries';
 import {useQuery} from '@apollo/react-hooks';
 import MediaContext from '../../Context/MediaContext';
 import {GetStorage, SetStorage, getImage} from '../../util';
-import {Routes} from '../../util';
+import {Routes} from '../../constants';
 import style from './style';
 
 const HomeScreen = ({route}) => {
+  const catId = route?.params?.id;
   const navigation = useNavigation();
-  const [Counter, SetCounter] = useState(1);
   const [orgId, setOrgId] = useState();
-  const [Qid, SetQid] = useState({
-    id1: '1',
-    id2: '2',
-    id3: '3',
-  });
-
-  let obj = {};
-  let catId = '';
-
-  if (route.params !== undefined) {
-    catId = route.params;
-  }
-
-  useEffect(() => {
-    GetStorage('id', SetQid);
-
-    if (
-      catId !== '' &&
-      Qid.id1.id !== catId.id &&
-      Qid.id2.id !== catId.id &&
-      Qid.id3.id !== catId.id
-    ) {
-      if (Counter === 1) {
-        obj.id1 = catId;
-        obj.id2 = Qid.id2;
-        obj.id3 = Qid.id3;
-
-        SetCounter(Counter + 1);
-      }
-      if (Counter === 2) {
-        obj.id1 = Qid.id1;
-        obj.id2 = catId;
-        obj.id3 = Qid.id3;
-
-        SetCounter(Counter + 1);
-      }
-      if (Counter === 3) {
-        obj.id1 = Qid.id1;
-        obj.id2 = Qid.id2;
-        obj.id3 = catId;
-
-        SetCounter(1);
-      }
-
-      SetStorage('id', obj);
-    }
-    GetStorage('id', SetQid);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [catId]);
+  const [selectedOrgs, setSelectedOrgs] = useState([]);
 
   const {data, setData} = useContext(MediaContext);
 
@@ -76,6 +27,31 @@ const HomeScreen = ({route}) => {
   const [LiveNowState, SetLiveNow] = useState([]);
   const [LiveRadioState, SetLiveRadio] = useState([]);
   const [PodcastState, SetPodcasts] = useState([]);
+
+  // console.log('catId', catId);
+
+  const getVal = async () => {
+    const idArr = await GetStorage('id');
+
+    let exist;
+
+    idArr && (exist = idArr.find((item) => item === catId.toString()));
+
+    if (!exist && catId) {
+      const newArr = [];
+      newArr.push(catId);
+      idArr && idArr[0] && newArr.push(idArr[0]);
+      idArr && idArr[1] && newArr.push(idArr[1]);
+
+      setSelectedOrgs(newArr);
+      SetStorage('id', newArr);
+    }
+  };
+
+  useEffect(() => {
+    getVal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [catId]);
 
   const {data: episodeData, loading: episodeLoading} = useQuery(
     api.EPISODES_QUERY_FILTER,
@@ -138,23 +114,14 @@ const HomeScreen = ({route}) => {
     //----------------------------------------------
   }, [episodeData, liveData, radioData, podcastData, mediaData, setData]);
 
-  const img1 = getImage(data, Qid.id1.id);
-  const img2 = getImage(data, Qid.id2.id);
-  const img3 = getImage(data, Qid.id3.id);
-
-  let TImages = [
-    {id: Qid.id1.id, image: img1},
-    {id: Qid.id2.id, image: img2},
-    {id: Qid.id3.id, image: img3},
-  ];
-
   const thumbImage = getImage(data, orgId);
   return (
     <ScrollView style={style.pageStyle}>
       <Text style={style.headingStyle}>Your recent picks</Text>
 
       <CenterComponent
-        thumbImage={TImages}
+        OrgIds={selectedOrgs}
+        selectedId={orgId}
         onPress1={() => navigation.navigate(Routes.SearchCenter)}
         onPress2={(id) => setOrgId(id)}
       />

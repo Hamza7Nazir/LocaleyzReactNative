@@ -38,9 +38,7 @@ const RenderLive = ({data, channelName, thumbImage, onPress}) => {
         horizontal
         showsHorizontalScrollIndicator={false}
         ListEmptyComponent={<LoadingSpinner />}
-        renderItem={({item}) => {
-          return renderLive(item);
-        }}
+        renderItem={({item}) => renderLive(item)}
       />
     </View>
   );

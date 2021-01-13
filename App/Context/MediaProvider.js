@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import MediaContext from './MediaContext';
 
 const MediaProvider = ({children}) => {
-  const [data, setData] = useState('test');
+  const [data, setData] = useState([]);
 
   return (
     <MediaContext.Provider value={{data, setData}}>

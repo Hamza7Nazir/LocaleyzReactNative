@@ -4,12 +4,6 @@ import NotFound from '../NotFound';
 import RenderList from '../RenderList';
 
 const PodcastEpisode = ({podcastList, onPress, loading}) => {
-  if (loading) {
-    return <LoadingSpinner />;
-  }
-  if (!podcastList.length) {
-    return <NotFound typeName="Podcasts" />;
-  }
   return loading ? (
     <LoadingSpinner />
   ) : !podcastList.length ? (

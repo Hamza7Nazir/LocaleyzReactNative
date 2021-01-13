@@ -8,14 +8,15 @@ const SetStorage = async (key, value) => {
   }
 };
 
-const GetStorage = async (key, SetQid, Qid) => {
+const GetStorage = async (key) => {
   try {
     const value = await AsyncStorage.getItem(key);
     if (value !== null) {
-      SetQid(JSON.parse(value));
+      return JSON.parse(value);
     }
   } catch (error) {
     console.log('Error Retrieving Data');
+    return;
   }
 };
 
@@ -28,14 +29,13 @@ const RemoveItem = async (key) => {
 };
 
 const getImage = (obj, id) => {
-  for (let i = 0; i < obj.length; i++) {
-    if (obj[i].id === id) {
-      return obj[i].squareImage;
+  let dumyImage = '../assets/images/imgNot.jpg';
+  obj.forEach((item) => {
+    if (item.id === id) {
+      return (dumyImage = item.squareImage);
     }
-  }
-
-  let str = '../assets/images/imgNot.jpg';
-  return str;
+  });
+  return dumyImage;
 };
 
 const TrimDescription = (desc) => {
@@ -50,17 +50,5 @@ const TrimDescription = (desc) => {
   }
   return desc;
 };
-let Routes = {
-  HomeScreen: 'HomeScreen',
-  Home: 'Home',
-  VideoScreen: 'VideoScreen',
-  Video: 'Video',
-  RadioScreen: 'RadioScreen',
-  Radio: 'Radio',
-  ScheduleScreen: 'ScheduleScreen',
-  Schedule: 'Schedule',
-  SearchCenterScreen: 'SearchCenterScreen',
-  SearchCenter: 'SearchCenter',
-};
 
-export {SetStorage, GetStorage, getImage, TrimDescription, RemoveItem, Routes};
+export {SetStorage, GetStorage, getImage, TrimDescription, RemoveItem};
