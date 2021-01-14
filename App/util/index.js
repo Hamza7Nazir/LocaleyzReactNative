@@ -37,6 +37,15 @@ const getImage = (obj, id) => {
   });
   return dumyImage;
 };
+const getTitle = (obj, id) => {
+  let dummyTitle = 'Titel Not Found';
+  obj.forEach((item) => {
+    if (item.id === id) {
+      return (dummyTitle = item.title);
+    }
+  });
+  return dummyTitle;
+};
 
 const TrimDescription = (desc) => {
   let second = [];
@@ -51,4 +60,11 @@ const TrimDescription = (desc) => {
   return desc;
 };
 
-export {SetStorage, GetStorage, getImage, TrimDescription, RemoveItem};
+export {
+  SetStorage,
+  GetStorage,
+  getImage,
+  getTitle,
+  TrimDescription,
+  RemoveItem,
+};

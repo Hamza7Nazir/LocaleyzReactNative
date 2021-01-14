@@ -4,9 +4,11 @@ import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import style from './style';
 import {getImage} from '../../util';
 import MediaContext from '../../Context/MediaContext';
-
+import {SetStorage} from '../../util';
+import {Strings} from '../../constants';
 const CenterComponent = ({onPress1, OrgIds, selectedId, onPress2}) => {
   const {data} = useContext(MediaContext);
+  selectedId && SetStorage(Strings.SelectedOrganization, selectedId);
 
   const RenderLatestVisits = (id, list) => {
     const imageUrl = getImage(list, id);

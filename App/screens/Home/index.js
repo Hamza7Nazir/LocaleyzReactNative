@@ -6,13 +6,14 @@ import {
   LiveNow,
   Heading,
   PodcastEpisode,
+  Header,
 } from '../../components';
 import {useNavigation} from '@react-navigation/native';
 import api from '../../api/Queries';
 import {useQuery} from '@apollo/react-hooks';
 import MediaContext from '../../Context/MediaContext';
 import {GetStorage, SetStorage, getImage} from '../../util';
-import {Routes} from '../../constants';
+import {Routes, Strings} from '../../constants';
 import style from './style';
 
 const HomeScreen = ({route}) => {
@@ -21,17 +22,15 @@ const HomeScreen = ({route}) => {
   const [orgId, setOrgId] = useState();
   const [selectedOrgs, setSelectedOrgs] = useState([]);
 
-  const {data, setData} = useContext(MediaContext);
+  const {data, setData, setSelectedOrgId} = useContext(MediaContext);
 
   const [LatestEpisodes, SetLatestEpisodes] = useState([]);
   const [LiveNowState, SetLiveNow] = useState([]);
   const [LiveRadioState, SetLiveRadio] = useState([]);
   const [PodcastState, SetPodcasts] = useState([]);
 
-  // console.log('catId', catId);
-
   const getVal = async () => {
-    const idArr = await GetStorage('id');
+    const idArr = await GetStorage(Strings.RecentlyViewed);
 
     let exist;
 
@@ -44,10 +43,16 @@ const HomeScreen = ({route}) => {
       idArr && idArr[1] && newArr.push(idArr[1]);
 
       setSelectedOrgs(newArr);
-      SetStorage('id', newArr);
+      SetStorage(Strings.RecentlyViewed, newArr);
     }
   };
-
+  const getFirstVal = async () => {
+    const idArr = await GetStorage(Strings.RecentlyViewed);
+    setSelectedOrgs(idArr);
+  };
+  useEffect(() => {
+    getFirstVal();
+  });
   useEffect(() => {
     getVal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -115,6 +120,17 @@ const HomeScreen = ({route}) => {
   }, [episodeData, liveData, radioData, podcastData, mediaData, setData]);
 
   const thumbImage = getImage(data, orgId);
+
+  // navigation.setOptions({
+  //   header: () => <Header title={'Localeyz'} />,
+  // });
+
+  // HomeScreen.defaultNavigationOptions = () => {
+  //   /// Adding something in the header of the app
+  //   return {
+  //     headerLeft: () => <Text>Right</Text>,
+  //   };
+  // };
   return (
     <ScrollView style={style.pageStyle}>
       <Text style={style.headingStyle}>Your recent picks</Text>
@@ -123,7 +139,10 @@ const HomeScreen = ({route}) => {
         OrgIds={selectedOrgs}
         selectedId={orgId}
         onPress1={() => navigation.navigate(Routes.SearchCenter)}
-        onPress2={(id) => setOrgId(id)}
+        onPress2={(id) => {
+          setOrgId(id);
+          setSelectedOrgId(id);
+        }}
       />
 
       <Heading iconName="videocam-1" headingName="Latest espisodes" />

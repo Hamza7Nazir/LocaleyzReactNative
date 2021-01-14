@@ -10,6 +10,7 @@ import {
   ScheduleScreen,
   SearchCenterScreen,
 } from '../screens';
+import {OrgHeader} from '../components';
 import {Header} from '../components';
 import FontTelloIcon from '../components/FontTelloIcon';
 import {ApolloProvider} from '@apollo/react-hooks';
@@ -17,13 +18,15 @@ import client from './apolloClient';
 import {Colors} from '../constants';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
 const MyTab = () => {
   return (
     <Tab.Navigator
+      headerMode="screen"
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
-
+          //TODO: remove from here
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home';
           } else if (route.name === 'Video') {
@@ -34,8 +37,9 @@ const MyTab = () => {
             iconName = focused ? 'calendar-empty' : 'calendar-empty';
           }
 
-          // You can return any component that you like here!
-          return <FontTelloIcon name={iconName} color={'#000'} size={15} />;
+          return (
+            <FontTelloIcon name={iconName} color={Colors.black} size={15} />
+          );
         },
       })}
       tabBarOptions={{
@@ -51,12 +55,17 @@ const MyTab = () => {
 };
 const MyStack = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator headerMode="screen">
       <Stack.Screen
         name="Tab"
         component={MyTab}
         options={{
-          headerTitle: (props) => <Header title="Localeyz" {...props} />,
+          headerTitle: (props) => <OrgHeader title="Localeyz" {...props} />,
+          headerStyle: {
+            backgroundColor: Colors.white,
+          },
+          headerTintColor: Colors.black,
+          cardStyle: {backgroundColor: Colors.white},
         }}
       />
       <Stack.Screen
