@@ -44,6 +44,7 @@ const HomeScreen = ({route}) => {
 
       setSelectedOrgs(newArr);
       SetStorage(Strings.RecentlyViewed, newArr);
+      console.log('new Arr is =', newArr);
     }
   };
   const getFirstVal = async () => {

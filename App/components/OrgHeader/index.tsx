@@ -5,10 +5,21 @@ import MediaContext from '../../Context/MediaContext';
 import {getImage, getTitle} from '../../util';
 import FontTelloIcon from '../FontTelloIcon';
 import {Colors} from '../../constants';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OrgHeader = () => {
   const {data, selectedOrgId} = useContext(MediaContext);
 
+  // const getOrgId = async () => {
+  //   try {
+  //     return await AsyncStorage.getItem('OrgId');
+  //   } catch (error) {
+  //     console.log('Error getting Org Id Data');
+  //   }
+  // };
+  // useEffect(() => {
+  //   const id = getOrgId();
+  // }, []);
   return (
     <TouchableOpacity>
       <View style={style.parentStyle}>

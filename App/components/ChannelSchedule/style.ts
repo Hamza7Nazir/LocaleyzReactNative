@@ -11,11 +11,18 @@ export default StyleSheet.create({
     margin: 8,
     padding: 5,
   },
-  dateStyle: {
+  titleStyle: {
     fontSize: 18,
+    width: 250,
   },
-  iconStyle: {
-    marginRight: 40,
+  clockIconStyle: {
+    marginRight: 30,
+
+    borderRightColor: Colors.white,
+    borderRightWidth: 2,
+    width: 40,
   },
-  popUpStyle: {},
+  arrowIconStyle: {
+    marginLeft: 30,
+  },
 });

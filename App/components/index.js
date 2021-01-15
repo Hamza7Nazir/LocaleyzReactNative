@@ -8,7 +8,8 @@ import PodcastEpisode from './PodcastEpisode';
 import NotFound from './NotFound';
 import LoadingSpinner from './LoadingSpinner';
 import OrgHeader from './OrgHeader';
-import Calendar from './Calendar';
+import Calendar1 from './Calendar';
+import ChannelSchedule from './ChannelSchedule';
 export {
   FindCenter,
   FontTelloIcon,
@@ -20,5 +21,6 @@ export {
   NotFound,
   LoadingSpinner,
   OrgHeader,
-  Calendar,
+  Calendar1,
+  ChannelSchedule,
 };
