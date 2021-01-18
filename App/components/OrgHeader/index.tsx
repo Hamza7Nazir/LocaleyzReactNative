@@ -1,39 +1,36 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import style from './style';
 import MediaContext from '../../Context/MediaContext';
 import {getImage, getTitle} from '../../util';
 import FontTelloIcon from '../FontTelloIcon';
-import {Colors} from '../../constants';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {Colors, Strings} from '../../constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../../constants';
 const OrgHeader = () => {
-  const {data, selectedOrgId} = useContext(MediaContext);
+  const navigation = useNavigation();
+  const {data} = useContext(MediaContext);
+  const [currentMedia, setCurrentMedia] = useState(0);
+  const getSelectedMedia = async () => {
+    const val = await AsyncStorage.getItem(Strings.CurrentSelectedMediaId);
+    return setCurrentMedia(val);
+  };
+  getSelectedMedia();
 
-  // const getOrgId = async () => {
-  //   try {
-  //     return await AsyncStorage.getItem('OrgId');
-  //   } catch (error) {
-  //     console.log('Error getting Org Id Data');
-  //   }
-  // };
-  // useEffect(() => {
-  //   const id = getOrgId();
-  // }, []);
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate(Routes.SearchCenter)}>
       <View style={style.parentStyle}>
         <View style={style.iconTextViewStyle}>
           <Image
             style={style.imageStyle}
             source={{
               uri:
-                getImage(data, selectedOrgId) ||
-                'https://picsum.photos/200/300',
+                getImage(data, currentMedia) || 'https://picsum.photos/200/300',
             }}
           />
 
-          <Text style={style.textStyle}>{getTitle(data, selectedOrgId)}</Text>
+          <Text style={style.textStyle}>{getTitle(data, currentMedia)}</Text>
         </View>
         <FontTelloIcon
           name={'info-circled-alt'}

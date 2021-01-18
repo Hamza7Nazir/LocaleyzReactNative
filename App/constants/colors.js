@@ -3,6 +3,6 @@ const Colors = {
   veryLightGrey: '#f2f2f2',
   lightBlue: '#34b7eb',
   white: '#ffff',
-  black: 'black',
+  black: '#000',
 };
 export default Colors;

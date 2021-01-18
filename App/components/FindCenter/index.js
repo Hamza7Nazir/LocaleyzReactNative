@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import style from './style';
@@ -8,7 +8,10 @@ import {SetStorage} from '../../util';
 import {Strings} from '../../constants';
 const CenterComponent = ({onPress1, OrgIds, selectedId, onPress2}) => {
   const {data} = useContext(MediaContext);
-  selectedId && SetStorage(Strings.SelectedOrganization, selectedId);
+
+  useEffect(() => {
+    selectedId && SetStorage(Strings.SelectedOrganization, selectedId);
+  }, [selectedId]);
 
   const RenderLatestVisits = (id, list) => {
     const imageUrl = getImage(list, id);

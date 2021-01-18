@@ -1,10 +1,11 @@
-import {StyleSheet} from 'react-native';
-import {Colors} from '../../constants';
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../constants';
 export default StyleSheet.create({
   imageStyle: {
     height: 30,
     width: 30,
     marginRight: 5,
+    borderRadius: 45,
   },
   parentStyle: {
     alignItems: 'center',

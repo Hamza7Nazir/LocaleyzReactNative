@@ -1,52 +1,105 @@
-import React, {useContext, useState} from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
-import FontTelloIcon from '../FontTelloIcon';
-import {Colors} from '../../constants';
+import React, {useContext, useEffect, useState} from 'react';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+  Modal,
+  TouchableHighlight,
+} from 'react-native';
 import {getTitle} from '../../util';
 import style from './style';
 import MediaContext from '../../Context/MediaContext';
-import RenderList from '../RenderList';
-import NotFound from '../NotFound';
+import api from '../../api/Queries';
+import {useQuery} from '@apollo/react-hooks';
+import {
+  NotFound,
+  ScheduleVideoList,
+  FontTelloIcon,
+  DropDownChannel,
+} from '../../components';
+import {Colors, Icons, Strings} from '../../constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Calendar = () => {
-  const {data, selectedOrgId} = useContext(MediaContext);
+const ChannelSchedule = () => {
+  const [scheduleList, setScheduleList] = useState([]);
+  const {data} = useContext(MediaContext);
   const [isPressed, setIsPressed] = useState(false);
+  const [currentMedia, setCurrentMedia] = useState(0);
 
-  const AddList = () => {
-    return (
-      <RenderList
-        data={data}
-        // iconName={'clock'}
-        onPress={() => console.log('Channel Schedule to RenderList')}
-        imageType={'square'}
-        descriptionType={'address'}
-        listType={'FindMediaCenters'}
-      />
-    );
+  const getSelectedMedia = async () => {
+    const val = await AsyncStorage.getItem(Strings.CurrentSelectedMediaId);
+    return setCurrentMedia(val);
   };
 
-  return (
-    <TouchableOpacity
-      onPress={() => (!isPressed ? setIsPressed(true) : setIsPressed(false))}>
-      <View style={style.parentStyle}>
-        <View style={style.clockIconStyle}>
-          <FontTelloIcon name={'clock'} color={Colors.lightBlue} size={20} />
-        </View>
-        <Text style={style.titleStyle} numberOfLines={1}>
-          {getTitle(data, selectedOrgId.toString())}
-        </Text>
+  const {data: ScheduleData} = useQuery(api.SCHEDULE_VIDEO_QUERY, {
+    variables: {
+      organizationId: currentMedia,
+    },
+  });
 
-        <View style={style.arrowIconStyle}>
-          <FontTelloIcon
-            name={!isPressed ? 'down-open' : 'up-open'}
-            color={Colors.lightBlue}
-            size={20}
-          />
+  useEffect(() => {
+    if (ScheduleData) {
+      setScheduleList(ScheduleData.liveVideosByOrganization);
+    }
+  }, [ScheduleData]);
+
+  getSelectedMedia();
+
+  return (
+    <View>
+      <TouchableOpacity
+        onPress={() => {
+          setIsPressed(!isPressed);
+        }}>
+        <View style={style.parentStyle}>
+          <View style={style.clockIconStyle}>
+            <FontTelloIcon
+              name={Icons.Clock}
+              color={Colors.lightBlue}
+              size={20}
+            />
+          </View>
+          <Text style={style.titleStyle} numberOfLines={1}>
+            {getTitle(data, currentMedia)}
+          </Text>
+
+          <View style={style.arrowIconStyle}>
+            <FontTelloIcon
+              name={
+                isPressed
+                  ? Icons.ArrowUpDirectionLight
+                  : Icons.ArrowDownDirectionLight
+              }
+              color={Colors.lightBlue}
+              size={20}
+            />
+          </View>
         </View>
-      </View>
-      {isPressed && data ? AddList() : <NotFound typeName={'Schedule'} />}
-    </TouchableOpacity>
+      </TouchableOpacity>
+
+      <ScheduleVideoList scheduleList={scheduleList} />
+      <Modal animationType="slide" transparent={true} visible={isPressed}>
+        <View style={style.centeredView}>
+          <View style={style.modalView}>
+            <Text style={style.modalText}>Stations</Text>
+            {isPressed && data ? (
+              <DropDownChannel scheduleList={scheduleList} />
+            ) : (
+              <NotFound typeName={'Schedule'} />
+            )}
+            <TouchableHighlight
+              style={style.openButton}
+              onPress={() => {
+                setIsPressed(!isPressed);
+              }}>
+              <Text style={style.textStyle}>Close</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      </Modal>
+    </View>
   );
 };
 
-export default Calendar;
+export default ChannelSchedule;

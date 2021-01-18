@@ -1,12 +1,12 @@
 import React from 'react';
-import {ScrollView, Text} from 'react-native';
+import {ScrollView} from 'react-native';
 import style from './style';
-import {Calendar1, ChannelSchedule} from '../../components';
+import {CalendarTab, ChannelSchedule} from '../../components';
 
 const ScheduleScreen = () => {
   return (
     <ScrollView style={style.pageStyle}>
-      <Calendar1 />
+      <CalendarTab />
       <ChannelSchedule />
     </ScrollView>
   );

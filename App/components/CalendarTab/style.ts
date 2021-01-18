@@ -11,25 +11,18 @@ export default StyleSheet.create({
     margin: 8,
     padding: 5,
   },
-  titleStyle: {
+  dateStyle: {
     fontSize: 18,
-    width: 250,
   },
-  clockIconStyle: {
-    marginRight: 30,
-    borderRightColor: Colors.white,
-    borderRightWidth: 2,
-    width: 45,
+  iconStyle: {
+    marginRight: 40,
   },
-  arrowIconStyle: {
-    marginLeft: 30,
-  },
-
+  popUpStyle: {},
   centeredView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 120,
+    marginTop: 22,
   },
   modalView: {
     margin: 20,
@@ -47,7 +40,7 @@ export default StyleSheet.create({
     elevation: 5,
   },
   openButton: {
-    backgroundColor: Colors.lightBlue,
+    backgroundColor: '#F194FF',
     borderRadius: 20,
     padding: 10,
     elevation: 2,
@@ -60,5 +53,9 @@ export default StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+
+  calStyle: {
+    backgroundColor: '#bd5e57',
   },
 });

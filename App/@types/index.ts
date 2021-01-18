@@ -14,9 +14,4 @@ export type mediaObj = {
   title: string;
   website: string;
   zip: string;
-  __typename: string;
-};
-
-export type MediaArr = {
-  data: mediaObj[];
 };

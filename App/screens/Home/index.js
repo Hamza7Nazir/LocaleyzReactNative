@@ -15,6 +15,7 @@ import MediaContext from '../../Context/MediaContext';
 import {GetStorage, SetStorage, getImage} from '../../util';
 import {Routes, Strings} from '../../constants';
 import style from './style';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = ({route}) => {
   const catId = route?.params?.id;
@@ -39,24 +40,31 @@ const HomeScreen = ({route}) => {
     if (!exist && catId) {
       const newArr = [];
       newArr.push(catId);
+
+      setCurrentSelectedMedia(catId);
+      setOrgId(catId);
       idArr && idArr[0] && newArr.push(idArr[0]);
       idArr && idArr[1] && newArr.push(idArr[1]);
 
       setSelectedOrgs(newArr);
       SetStorage(Strings.RecentlyViewed, newArr);
-      console.log('new Arr is =', newArr);
     }
   };
   const getFirstVal = async () => {
     const idArr = await GetStorage(Strings.RecentlyViewed);
+    const current = await AsyncStorage.getItem(Strings.CurrentSelectedMediaId);
+
+    setOrgId(current);
     setSelectedOrgs(idArr);
+  };
+  const setCurrentSelectedMedia = async (id) => {
+    await AsyncStorage.setItem(Strings.CurrentSelectedMediaId, id);
   };
   useEffect(() => {
     getFirstVal();
-  });
+  }, []);
   useEffect(() => {
     getVal();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [catId]);
 
   const {data: episodeData, loading: episodeLoading} = useQuery(
@@ -117,21 +125,10 @@ const HomeScreen = ({route}) => {
     if (mediaData) {
       setData(mediaData.organizations);
     }
-    //----------------------------------------------
   }, [episodeData, liveData, radioData, podcastData, mediaData, setData]);
 
   const thumbImage = getImage(data, orgId);
 
-  // navigation.setOptions({
-  //   header: () => <Header title={'Localeyz'} />,
-  // });
-
-  // HomeScreen.defaultNavigationOptions = () => {
-  //   /// Adding something in the header of the app
-  //   return {
-  //     headerLeft: () => <Text>Right</Text>,
-  //   };
-  // };
   return (
     <ScrollView style={style.pageStyle}>
       <Text style={style.headingStyle}>Your recent picks</Text>
@@ -143,6 +140,7 @@ const HomeScreen = ({route}) => {
         onPress2={(id) => {
           setOrgId(id);
           setSelectedOrgId(id);
+          setCurrentSelectedMedia(id);
         }}
       />
 

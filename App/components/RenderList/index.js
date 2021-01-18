@@ -3,6 +3,7 @@ import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import FontTelloIcon from '../../components/FontTelloIcon';
 import style from './style';
 import LoadingSpinner from '../LoadingSpinner';
+import {Colors, Strings} from '../../constants';
 
 const RenderList = ({
   iconName,
@@ -17,14 +18,14 @@ const RenderList = ({
       <TouchableOpacity onPress={() => onPress(item.id)}>
         <View
           style={
-            listType === 'FindMediaCenters'
+            listType === Strings.FindMediaCenters
               ? style.mediaCenterStyle
               : style.listBarStyle
           }>
           <Image
             style={style.imageStyle}
             source={{
-              uri: imageType === 'square' ? item.squareImage : item.image,
+              uri: imageType === Strings.Square ? item.squareImage : item.image,
             }}
           />
           <View style={style.textWrap}>
@@ -32,11 +33,13 @@ const RenderList = ({
               {item.title}
             </Text>
             <Text numberOfLines={1} style={style.detailStyle}>
-              {descriptionType === 'address' ? item.address : item.description}
+              {descriptionType === Strings.Address
+                ? item.address
+                : item.description}
             </Text>
           </View>
           <View style={style.iconCameraStyle}>
-            <FontTelloIcon name={iconName} color={'#000'} size={25} />
+            <FontTelloIcon name={iconName} color={Colors.black} size={25} />
           </View>
         </View>
       </TouchableOpacity>

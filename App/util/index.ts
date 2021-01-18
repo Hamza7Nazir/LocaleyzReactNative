@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {MediaArr, mediaObj} from '../@types';
+import {mediaObj} from '../@types';
+import Moment from 'react-moment';
 
 const SetStorage = async (key: string, value: string[]) => {
   try {
@@ -29,18 +30,18 @@ const RemoveItem = async (key: string) => {
   }
 };
 
-const getImage = (obj: MediaArr, id: string) => {
+const getImage = (MediaObjList: mediaObj[], id: string) => {
   let dumyImage = '../assets/images/imgNot.jpg';
-  obj.forEach((item) => {
+  MediaObjList.forEach((item: any) => {
     if (item.id === id) {
       return (dumyImage = item.squareImage);
     }
   });
   return dumyImage;
 };
-const getTitle = (obj: MediaArr, id: string) => {
-  let dummyTitle = 'Titel Not Found';
-  obj.forEach((item: mediaObj) => {
+const getTitle = (MediaObjList: mediaObj[], id: string) => {
+  let dummyTitle = 'No channel selected';
+  MediaObjList.forEach((item: mediaObj) => {
     if (item.id === id) {
       return (dummyTitle = item.title);
     }
@@ -63,7 +64,7 @@ const TrimDescription = (desc: string) => {
 
 const TrimDate = () => {
   let trim = Date().split(' ', 4);
-  return trim[0] + 'day ' + trim[1] + ' ' + trim[2] + ', ' + trim[3];
+  return trim[0] + ' ' + trim[1] + ' ' + trim[2] + ', ' + trim[3];
 };
 export {
   SetStorage,

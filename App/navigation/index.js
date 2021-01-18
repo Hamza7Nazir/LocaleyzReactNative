@@ -2,7 +2,6 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import {Routes} from '../constants';
 import {
   HomeScreen,
   VideoScreen,
@@ -14,8 +13,8 @@ import {OrgHeader} from '../components';
 import {Header} from '../components';
 import FontTelloIcon from '../components/FontTelloIcon';
 import {ApolloProvider} from '@apollo/react-hooks';
-import client from './apolloClient';
-import {Colors} from '../constants';
+import client from '../api/Client';
+import {Colors, Routes, Icons} from '../constants';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -27,14 +26,14 @@ const MyTab = () => {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
           //TODO: remove from here
-          if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home';
-          } else if (route.name === 'Video') {
-            iconName = focused ? 'videocam-1' : 'videocam-1';
-          } else if (route.name === 'Radio') {
-            iconName = focused ? 'signal' : 'signal';
-          } else if (route.name === 'Schedule') {
-            iconName = focused ? 'calendar-empty' : 'calendar-empty';
+          if (route.name === Routes.Home) {
+            iconName = focused ? Icons.HomeDark : Icons.HomeLight;
+          } else if (route.name === Routes.Video) {
+            iconName = focused ? Icons.VideoCameraDark : Icons.VideoCameraLight;
+          } else if (route.name === Routes.Radio) {
+            iconName = focused ? Icons.TowerSignal : Icons.TowerSignal;
+          } else if (route.name === Routes.Schedule) {
+            iconName = focused ? Icons.CalendarLight : Icons.CalendarLight;
           }
 
           return (

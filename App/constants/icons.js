@@ -1,0 +1,21 @@
+const Icons = {
+  VideoCameraDark: 'videocam',
+  GlassFilled: 'glass',
+  TowerSignal: 'signal',
+  Spin360: 'spin3',
+  Spin180: 'cw',
+  HomeLight: 'home',
+  HomeDark: 'home-1',
+  VideoCameraLight: 'videocam-1',
+  CalendarLight: 'calendar-empty',
+  ArrowRightDirectionDark: 'right-dir',
+  ArrowDownDirectionDark: 'down-dir',
+  ArrowDownDirectionLight: 'down-open',
+  ArrowUpDirectionLight: 'up-open',
+  ArrowDownCartDark: 'cart-arrow-down',
+  Attach: 'attach',
+  Search: 'search',
+  ToolTip: 'info-circled-alt',
+  Clock: 'clock',
+};
+export default Icons;
