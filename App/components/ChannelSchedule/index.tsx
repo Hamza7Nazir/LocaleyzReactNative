@@ -10,7 +10,7 @@ import {
 import {getTitle} from '../../util';
 import style from './style';
 import MediaContext from '../../Context/MediaContext';
-import api from '../../api/Queries';
+import {Queries} from '../../api';
 import {useQuery} from '@apollo/react-hooks';
 import {
   NotFound,
@@ -23,29 +23,61 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ChannelSchedule = () => {
   const [scheduleList, setScheduleList] = useState([]);
+  const [VideoByChannelState, setVideoByChannelState] = useState([]);
+  const [channelIdState, setChannelIdState] = useState<string>('0');
   const {data} = useContext(MediaContext);
-  const [isPressed, setIsPressed] = useState(false);
-  const [currentMedia, setCurrentMedia] = useState(0);
+  const [isPressed, setIsPressed] = useState<boolean>(false);
+  const [currentMedia, setCurrentMedia] = useState<string>('0');
 
+  const getChannelId = (id: string) => {
+    setChannelIdState(id);
+  };
   const getSelectedMedia = async () => {
     const val = await AsyncStorage.getItem(Strings.CurrentSelectedMediaId);
-    return setCurrentMedia(val);
+    if (val !== null) {
+      return setCurrentMedia(val);
+    }
   };
 
-  const {data: ScheduleData} = useQuery(api.SCHEDULE_VIDEO_QUERY, {
+  const {data: ScheduleData} = useQuery(Queries.SCHEDULE_VIDEO_QUERY, {
     variables: {
       organizationId: currentMedia,
     },
   });
 
+  const {data: VideosByChannelData} = useQuery(
+    Queries.SCHEDULE_LIVE_VIDEO_BY_CHANNEL,
+    {
+      variables: {
+        liveVideoId: channelIdState,
+        query: '',
+        per: 30,
+        page: 1,
+      },
+    },
+  );
   useEffect(() => {
     if (ScheduleData) {
       setScheduleList(ScheduleData.liveVideosByOrganization);
     }
-  }, [ScheduleData]);
+    if (VideosByChannelData) {
+      console.log(VideosByChannelData.liveVideoByChannel.nodes);
+      setVideoByChannelState(VideosByChannelData.liveVideoByChannel.nodes);
+    }
+  }, [ScheduleData, VideosByChannelData]);
+
+  const getChannelName = () => {
+    if (scheduleList.length) {
+      const name = scheduleList.filter(
+        (singleVal) => singleVal.id === channelIdState,
+        console.log('name is ', name),
+      );
+      return name[0].stations;
+    } else return 'No Channel available';
+  };
 
   getSelectedMedia();
-
+  getChannelName();
   return (
     <View>
       <TouchableOpacity
@@ -61,7 +93,7 @@ const ChannelSchedule = () => {
             />
           </View>
           <Text style={style.titleStyle} numberOfLines={1}>
-            {getTitle(data, currentMedia)}
+            {getChannelName()}
           </Text>
 
           <View style={style.arrowIconStyle}>
@@ -78,23 +110,27 @@ const ChannelSchedule = () => {
         </View>
       </TouchableOpacity>
 
-      <ScheduleVideoList scheduleList={scheduleList} />
+      <ScheduleVideoList scheduleList={VideoByChannelState} />
+
       <Modal animationType="slide" transparent={true} visible={isPressed}>
         <View style={style.centeredView}>
           <View style={style.modalView}>
-            <Text style={style.modalText}>Stations</Text>
+            <Text style={style.modalText}>Select a channel</Text>
             {isPressed && data ? (
-              <DropDownChannel scheduleList={scheduleList} />
+              <DropDownChannel
+                getChannelId={getChannelId}
+                scheduleList={scheduleList}
+              />
             ) : (
               <NotFound typeName={'Schedule'} />
             )}
-            <TouchableHighlight
+            <TouchableOpacity
               style={style.openButton}
               onPress={() => {
                 setIsPressed(!isPressed);
               }}>
               <Text style={style.textStyle}>Close</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>

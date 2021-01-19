@@ -2,9 +2,7 @@ const Strings = {
   SelectedOrganization: 'SelectedOrganization',
   RecentlyViewed: 'id',
   CurrentSelectedMediaId: 'CurrentSelectedMediaId',
-  Address: 'address',
-  FindMediaCenters: 'FindMediaCenters',
-  Square: 'square',
+  Episode: 'Episode',
 };
 
 export default Strings;

@@ -1,20 +1,21 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Modal,
-  TouchableHighlight,
-} from 'react-native';
-import Moment from 'react-moment';
+import {Text, View, TouchableOpacity} from 'react-native';
 import FontTelloIcon from '../FontTelloIcon';
 import {Colors} from '../../constants';
-import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
-import {TrimDate} from '../../util';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import style from './style';
 
 const CalendarTab = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const moment = require('moment');
+  const today = moment();
+
+  const hideDatePicker = () => {
+    setModalVisible(false);
+  };
+  const handleConfirm = (date: Date) => {
+    hideDatePicker();
+  };
 
   return (
     <View>
@@ -31,24 +32,18 @@ const CalendarTab = () => {
             />
           </View>
 
-          <Text style={style.dateStyle}>{TrimDate()}</Text>
+          <Text style={style.dateStyle}>
+            {today.format('dddd MMMM D , YYYY')}
+          </Text>
         </View>
       </TouchableOpacity>
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
-        <View style={style.centeredView}>
-          <View style={style.modalView}>
-            <Text style={style.modalText}>Select event date</Text>
-            <Calendar />
-            <TouchableHighlight
-              style={{...style.openButton, backgroundColor: '#2196F3'}}
-              onPress={() => {
-                setModalVisible(!modalVisible);
-              }}>
-              <Text style={style.textStyle}>Submit</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </Modal>
+
+      <DateTimePickerModal
+        isVisible={modalVisible}
+        mode="date"
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+      />
     </View>
   );
 };

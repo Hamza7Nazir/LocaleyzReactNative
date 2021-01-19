@@ -15,3 +15,9 @@ export type mediaObj = {
   website: string;
   zip: string;
 };
+export type ScheduleObj = {
+  id: string;
+  stations: string;
+  streamUrl: string;
+  playerType: string;
+};

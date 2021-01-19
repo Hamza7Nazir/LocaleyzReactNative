@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {ScrollView} from 'react-native';
-import SearchBar from '../../components/SearchBar';
+import {SearchBar, Header} from '../../components';
 
 import RenderList from '../../components/RenderList';
 import MediaContext from '../../Context/MediaContext';
@@ -21,25 +21,28 @@ const SearchCenterScreen = () => {
   };
 
   return (
-    <ScrollView>
-      <SearchBar
-        autoCapitalize="none"
-        autoCorrect={false}
-        text={text}
-        setText={(val) => setText(val)}
-      />
-      {data && (
-        <RenderList
-          data={filterData(data)}
-          onPress={(id) => {
-            navigation.navigate(Routes.Home, {id: id});
-          }}
-          imageType="square"
-          descriptionType="address"
-          listType="FindMediaCenters"
+    <>
+      <Header title={'Localeyz'} />
+      <ScrollView>
+        <SearchBar
+          autoCapitalize="none"
+          autoCorrect={false}
+          text={text}
+          setText={(val) => setText(val)}
         />
-      )}
-    </ScrollView>
+        {data && (
+          <RenderList
+            data={filterData(data)}
+            onPress={(id) => {
+              navigation.navigate(Routes.Home, {id: id});
+            }}
+            imageType="square"
+            descriptionType="address"
+            listType="FindMediaCenters"
+          />
+        )}
+      </ScrollView>
+    </>
   );
 };
 export default SearchCenterScreen;

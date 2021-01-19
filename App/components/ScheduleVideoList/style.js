@@ -7,6 +7,7 @@ export default StyleSheet.create({
   },
   timeStyle: {
     borderColor: Colors.lightGrey,
+    // borderLeftColor: Colors.lightBlue, // when selected
     borderWidth: 1,
     borderRightWidth: 0,
     borderTopWidth: 0,
@@ -22,7 +23,7 @@ export default StyleSheet.create({
     flex: 1,
   },
   detailStyle: {
-    borderColor: Colors.lightGrey,
+    borderColor: Colors.lightGrey, // light blue when selected
     borderWidth: 1,
     borderRadius: 5,
     flex: 1,

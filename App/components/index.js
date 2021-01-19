@@ -12,8 +12,9 @@ import CalendarTab from './CalendarTab';
 import ChannelSchedule from './ChannelSchedule';
 import ScheduleVideoList from './ScheduleVideoList';
 import RenderList from './RenderList';
-import RendeLive from './RenderLive';
+import RenderLive from './RenderLive';
 import DropDownChannel from './DropDownChannel';
+import SearchBar from './SearchBar';
 export {
   FindCenter,
   FontTelloIcon,
@@ -28,7 +29,8 @@ export {
   CalendarTab,
   ChannelSchedule,
   ScheduleVideoList,
-  RendeLive,
+  RenderLive,
   RenderList,
   DropDownChannel,
+  SearchBar,
 };

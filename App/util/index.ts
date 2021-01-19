@@ -1,6 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {mediaObj} from '../@types';
-import Moment from 'react-moment';
 
 const SetStorage = async (key: string, value: string[]) => {
   try {
@@ -62,10 +61,6 @@ const TrimDescription = (desc: string) => {
   return desc;
 };
 
-const TrimDate = () => {
-  let trim = Date().split(' ', 4);
-  return trim[0] + ' ' + trim[1] + ' ' + trim[2] + ', ' + trim[3];
-};
 export {
   SetStorage,
   GetStorage,
@@ -73,5 +68,4 @@ export {
   getTitle,
   TrimDescription,
   RemoveItem,
-  TrimDate,
 };

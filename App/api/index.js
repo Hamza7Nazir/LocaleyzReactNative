@@ -1,3 +1,3 @@
-import Queries from './Queries';
+import * as Queries from './Queries';
 
 export {Queries};
