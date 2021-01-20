@@ -7,7 +7,7 @@ import {Strings} from '../../constants';
 const RenderLive = ({data, channelName, thumbImage, onPress, component}) => {
   const renderLive = (item) => {
     const STATION = 'station';
-    const STATIONS = 'staions';
+    const STATIONS = 'stations';
     return (
       <TouchableOpacity onPress={() => onPress(item.id)}>
         <View
@@ -22,7 +22,7 @@ const RenderLive = ({data, channelName, thumbImage, onPress, component}) => {
               uri:
                 component === Strings.Episode
                   ? item?.thumbnail?.url
-                  : item.image || require('../../assets/images/imgNot.jpg'),
+                  : item.image || '../../assets/images/imgNot.jpg',
             }}
           />
           <View
@@ -35,15 +35,15 @@ const RenderLive = ({data, channelName, thumbImage, onPress, component}) => {
               style={style.iconOnImageStyleLive}
               source={{uri: thumbImage}}
             />
-            {component === Strings.Episode ? null : (
+            {component === undefined ? (
               <Text style={style.iconTextStyle} numberOfLines={2}>
-                {channelName === 'station'
-                  ? (channelName = item.station)
-                  : channelName === 'stations'
-                  ? (channelName = item.stations)
+                {channelName === STATION
+                  ? item.station
+                  : channelName === STATIONS
+                  ? item.stations
                   : null}
               </Text>
-            )}
+            ) : null}
           </View>
           <Text
             numberOfLines={1}
@@ -71,7 +71,7 @@ const RenderLive = ({data, channelName, thumbImage, onPress, component}) => {
     <View style={style.parentStyle}>
       <FlatList
         data={data}
-        keyExtractor={(video) => video.id}
+        keyExtractor={(video) => video.id.toString()}
         horizontal
         showsHorizontalScrollIndicator={false}
         ListEmptyComponent={<LoadingSpinner />}

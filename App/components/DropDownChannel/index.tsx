@@ -3,8 +3,17 @@ import {Text, View, FlatList, TouchableOpacity} from 'react-native';
 import {NotFound} from '../../components';
 import style from './style';
 import {ScheduleObj} from '../../@types';
-const DropDownChannel = ({getChannelId, scheduleList}) => {
-  const showList = (item: ScheduleObj) => {
+
+interface DropDownChannelProps {
+  getChannelId: (item: string) => void;
+  scheduleList: ScheduleObj[];
+}
+
+const DropDownChannel = ({
+  getChannelId,
+  scheduleList,
+}: DropDownChannelProps) => {
+  const renderChannelList = (item: ScheduleObj) => {
     return (
       <TouchableOpacity
         onPress={() => {
@@ -22,9 +31,9 @@ const DropDownChannel = ({getChannelId, scheduleList}) => {
   return (
     <FlatList
       data={scheduleList}
-      keyExtractor={(element) => element.id}
+      keyExtractor={(element) => element.id.toString()}
       ListEmptyComponent={<NotFound typeName="Channels" />}
-      renderItem={({item}) => showList(item)}
+      renderItem={({item}) => renderChannelList(item)}
     />
   );
 };

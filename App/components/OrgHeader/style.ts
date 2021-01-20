@@ -13,7 +13,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     height: 50,
     backgroundColor: Colors.white,
-    shadowColor: '#000',
+    shadowColor: Colors.black,
     shadowOffset: {
       width: 0,
       height: 2,

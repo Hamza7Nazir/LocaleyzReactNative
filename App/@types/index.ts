@@ -21,3 +21,14 @@ export type ScheduleObj = {
   streamUrl: string;
   playerType: string;
 };
+
+export type CurrentlyPlaying = {
+  description: string;
+  duration: string;
+  endDatetime: string;
+  id: string;
+  image: string;
+  program: string;
+  releasedDate: string;
+  title: string;
+};

@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext, useLayoutEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {ScrollView, Text} from 'react-native';
 import CenterComponent from '../../components/FindCenter';
 import {
@@ -37,7 +37,7 @@ const HomeScreen = ({route}) => {
 
     let exist;
 
-    idArr && (exist = idArr.find((item) => item === catId.toString()));
+    idArr && (exist = idArr.find((item) => item === catId));
 
     if (!exist && catId) {
       const newArr = [];
@@ -152,7 +152,7 @@ const HomeScreen = ({route}) => {
           loading={episodeLoading}
           emptyMessage="latest episodes"
           onPress={(id) => {
-            navigation.navigate(Routes.Schedule, {id: id});
+            navigation.navigate(Routes.Video, {id: id});
           }}
         />
 

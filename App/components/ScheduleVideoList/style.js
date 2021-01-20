@@ -5,9 +5,19 @@ export default StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 15,
   },
+  iconStyle: {
+    left: 330,
+    top: 20,
+    position: 'absolute',
+  },
+  PlayingtimeStyle: {
+    borderLeftColor: Colors.lightBlue,
+  },
   timeStyle: {
-    borderColor: Colors.lightGrey,
-    // borderLeftColor: Colors.lightBlue, // when selected
+    borderBottomColor: Colors.lightGrey,
+    borderTopColor: Colors.lightGrey,
+    borderRightColor: Colors.lightGrey,
+    borderLeftColor: Colors.lightGrey,
     borderWidth: 1,
     borderRightWidth: 0,
     borderTopWidth: 0,
@@ -22,6 +32,9 @@ export default StyleSheet.create({
     borderTopWidth: 0,
     flex: 1,
   },
+  playingdetailStyle: {
+    borderColor: Colors.lightBlue,
+  },
   detailStyle: {
     borderColor: Colors.lightGrey, // light blue when selected
     borderWidth: 1,
@@ -34,6 +47,7 @@ export default StyleSheet.create({
   mainHeadingStyle: {
     fontSize: 18,
     fontWeight: 'bold',
+    width: 250,
   },
   descriptionStyle: {
     fontSize: 14,
