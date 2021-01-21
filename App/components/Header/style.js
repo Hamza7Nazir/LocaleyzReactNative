@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-
+import {Colors} from '../../constants';
 export default StyleSheet.create({
   imageStyle: {
     height: 30,
@@ -9,7 +9,16 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-    // backgroundColor: '#fafafa',
+    height: 50,
+    backgroundColor: Colors.white,
+    shadowColor: Colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   textStyle: {
     fontFamily: 'sans-serif-condensed',

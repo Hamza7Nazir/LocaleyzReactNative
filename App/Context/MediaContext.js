@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MediaContext = React.createContext({
-  data: 'cat',
+  data: [],
 });
 MediaContext.displayName = 'This Media Context';
 

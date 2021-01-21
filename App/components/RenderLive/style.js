@@ -1,8 +1,31 @@
 import {StyleSheet} from 'react-native';
-
+import {Colors} from '../../constants';
 let videoAndTextWidth = 300;
 let iconAndViewHeight = 30;
 export default StyleSheet.create({
+  listBlockStyle: {
+    alignItems: 'flex-start',
+    marginRight: 8,
+  },
+  imageStyle: {
+    borderRadius: 10,
+    height: 110,
+    width: 100,
+  },
+  iconOnImageStyleEpisode: {
+    borderRadius: 45,
+    height: 25,
+    left: 0,
+    margin: 5,
+    position: 'absolute',
+    top: 0,
+    width: 25,
+  },
+  listTextStyleEpisode: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    width: 100,
+  },
   headingStyle: {
     flexDirection: 'row',
     marginBottom: 15,
@@ -26,7 +49,7 @@ export default StyleSheet.create({
     marginRight: 8,
     flex: 1,
   },
-  listTextStyle: {
+  listTextStyleLive: {
     fontSize: 28,
     fontWeight: 'bold',
     width: videoAndTextWidth,
@@ -34,9 +57,13 @@ export default StyleSheet.create({
     margin: 5,
     position: 'absolute',
     top: 120,
-    color: '#fff',
+    color: Colors.white,
   },
-  listTextDetailStyle: {
+  listDetailStyle: {
+    width: 100,
+    color: Colors.Grey,
+  },
+  listTextDetailStyleLive: {
     fontSize: 14,
     fontWeight: 'bold',
     width: videoAndTextWidth,
@@ -44,9 +71,9 @@ export default StyleSheet.create({
     margin: 5,
     position: 'absolute',
     top: 155,
-    color: '#fff',
+    color: Colors.white,
   },
-  iconOnImageStyle: {
+  iconOnImageStyleLive: {
     borderRadius: 45,
     height: iconAndViewHeight,
     width: 30,
@@ -57,11 +84,12 @@ export default StyleSheet.create({
     borderRadius: 45,
     left: 10,
     margin: 5,
+    marginRight: 60,
     paddingRight: 8,
     position: 'absolute',
     alignItems: 'center',
     top: 15,
-    backgroundColor: '#3b8dd1',
+    backgroundColor: Colors.Blue,
   },
   iconTextStyle: {
     paddingHorizontal: 4,
@@ -79,6 +107,6 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   ifTextStyle: {
-    color: '#949997',
+    color: Colors.Grey,
   },
 });

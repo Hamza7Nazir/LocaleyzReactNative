@@ -12,29 +12,46 @@
   "dependencies": {
     "@apollo/client": "^3.3.6",
     "@react-native-async-storage/async-storage": "^1.13.2",
+    "@react-native-community/datetimepicker": "^3.0.9",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.2",
     "@react-navigation/native": "^5.8.10",
     "@react-navigation/stack": "^5.12.8",
+    "@types/react-router": "^5.1.11",
     "apollo-client-preset": "^1.0.8",
     "graphql": "^15.4.0",
     "graphql-tag": "^2.11.0",
+    "moment": "^2.29.1",
     "react": "16.13.1",
     "react-apollo": "^3.1.5",
     "react-native": "0.63.4",
     "react-native-animated-loader": "^0.0.9",
+    "react-native-calendar-picker": "^7.0.8",
+    "react-native-calendars": "^1.1129.0",
+    "react-native-elements": "^3.1.0",
     "react-native-gesture-handler": "^1.9.0",
+    "react-native-hyperlink": "^0.0.19",
     "react-native-loading-spinner-overlay": "^2.0.0",
+    "react-native-material-dropdown": "^0.11.1",
+    "react-native-modal-datetime-picker": "^9.1.0",
+    "react-native-overlay": "^0.5.0",
+    "react-native-picker-select": "^8.0.4",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-screens": "^2.16.1",
     "react-native-vector-icons": "^7.1.0",
-    "react-native-video": "^5.1.0-alpha8"
+    "react-native-video": "^5.1.0-alpha8",
+    "rn-overlay": "^0.4.0",
+    "touch-cli": "^0.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
     "@babel/runtime": "^7.8.4",
     "@react-native-community/eslint-config": "^1.1.0",
+    "@types/jest": "^26.0.20",
+    "@types/react": "^17.0.0",
+    "@types/react-native": "^0.63.45",
+    "@types/react-test-renderer": "^17.0.0",
     "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^7.1.0",
@@ -42,9 +59,9 @@
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
     "prettier": "^2.2.1",
-    "react-test-renderer": "16.13.1"
-  },
-  "jest": {
-    "preset": "react-native"
+    "react-native-typescript-transformer": "^1.2.13",
+    "react-test-renderer": "16.13.1",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
   }
 }

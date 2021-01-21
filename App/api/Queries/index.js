@@ -317,7 +317,7 @@ const RECENT_VIDEO_EPISODES_QUERY = gql`
     }
   }
 `;
-export default {
+export {
   EPISODES_QUERY_FILTER,
   PLAYLIST_QUERY,
   MEDIA_CENTERS_QUERY,
