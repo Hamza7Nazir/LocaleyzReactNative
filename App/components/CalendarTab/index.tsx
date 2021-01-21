@@ -9,16 +9,13 @@ const CalendarTab = () => {
   const {selectedDate, setSelectedDate} = useContext(MediaContext);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-  const moment = require('moment');
-  const today = moment();
-
   const hideDatePicker = () => {
     setModalVisible(false);
   };
   const handleConfirm = (date: Date) => {
     hideDatePicker();
 
-    let myDate = new Date(date);
+    const myDate = new Date(date);
 
     setSelectedDate(myDate.toDateString());
   };

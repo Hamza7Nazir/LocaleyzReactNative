@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useQuery} from '@apollo/react-hooks';
 import MediaContext from '../../Context/MediaContext';
 import {GetStorage, SetStorage, getImage} from '../../util';
-import {Routes, Strings} from '../../constants';
+import {Routes, Icons, Strings} from '../../constants';
 import style from './style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Queries} from '../../api';
@@ -145,7 +145,10 @@ const HomeScreen = ({route}) => {
           }}
         />
 
-        <Heading iconName="videocam-1" headingName="Latest espisodes" />
+        <Heading
+          iconName={Icons.VideoCameraLight}
+          headingName="Latest espisodes"
+        />
         <LatestEpisode
           data={LatestEpisodes}
           thumbImage={thumbImage}
@@ -156,9 +159,9 @@ const HomeScreen = ({route}) => {
           }}
         />
 
-        <Heading iconName="videocam-1" headingName="Live Now" />
+        <Heading iconName={Icons.VideoCameraLight} headingName="Live Now" />
         <LiveNow
-          channelName="stations"
+          channelName={Strings.Stations}
           thumbImage={thumbImage}
           loading={liveLoading}
           emptyMessage="Live episodes"
@@ -168,9 +171,9 @@ const HomeScreen = ({route}) => {
           }}
         />
 
-        <Heading iconName="signal" headingName="Live Radio" />
+        <Heading iconName={Icons.RadioLight} headingName="Live Radio" />
         <LiveNow
-          channelName="station"
+          channelName={Strings.Station}
           thumbImage={thumbImage}
           loading={radioLoading}
           emptyMessage="Radios"
@@ -180,7 +183,10 @@ const HomeScreen = ({route}) => {
           }}
         />
 
-        <Heading iconName="signal" headingName="Latest podcast espisodes" />
+        <Heading
+          iconName={Icons.RadioLight}
+          headingName="Latest podcast espisodes"
+        />
         <PodcastEpisode
           podcastList={PodcastState}
           loading={podcastLoading}

@@ -6,8 +6,6 @@ import {TrimDescription} from '../../util';
 import {Strings} from '../../constants';
 const RenderLive = ({data, channelName, thumbImage, onPress, component}) => {
   const renderLive = (item) => {
-    const STATION = 'station';
-    const STATIONS = 'stations';
     return (
       <TouchableOpacity onPress={() => onPress(item.id)}>
         <View
@@ -37,9 +35,9 @@ const RenderLive = ({data, channelName, thumbImage, onPress, component}) => {
             />
             {component === undefined ? (
               <Text style={style.iconTextStyle} numberOfLines={2}>
-                {channelName === STATION
+                {channelName === Strings.Station
                   ? item.station
-                  : channelName === STATIONS
+                  : channelName === Strings.Stations
                   ? item.stations
                   : null}
               </Text>

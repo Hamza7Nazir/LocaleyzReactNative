@@ -1,12 +1,12 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {HomeScreen, VideoScreen, RadioScreen, ScheduleScreen} from '../screens';
-import {Colors, Routes, Icons} from '../constants';
+import {Colors, Strings, Routes, Icons} from '../constants';
 import FontTelloIcon from '../components/FontTelloIcon';
 
 const MyTabNavigator = () => {
   const Tab = createBottomTabNavigator();
-  const IconSize = 30;
+
   return (
     <Tab.Navigator
       headerMode="screen"
@@ -23,7 +23,7 @@ const MyTabNavigator = () => {
               <FontTelloIcon
                 name={focused ? Icons.HomeRoundDark : Icons.HomeRoundLight}
                 color={Colors.black}
-                size={IconSize}
+                size={Strings.iconMediumSize}
               />
             );
           },
@@ -38,7 +38,7 @@ const MyTabNavigator = () => {
               <FontTelloIcon
                 name={focused ? Icons.VideoCameraDark : Icons.VideoCameraLight}
                 color={Colors.black}
-                size={IconSize}
+                size={Strings.iconMediumSize}
               />
             );
           },
@@ -53,7 +53,7 @@ const MyTabNavigator = () => {
               <FontTelloIcon
                 name={focused ? Icons.RadioDark : Icons.RadioLight}
                 color={Colors.black}
-                size={IconSize}
+                size={Strings.iconMediumSize}
               />
             );
           },
@@ -68,7 +68,7 @@ const MyTabNavigator = () => {
               <FontTelloIcon
                 name={focused ? Icons.CalendarDark : Icons.CalendarLight}
                 color={Colors.black}
-                size={IconSize}
+                size={Strings.iconMediumSize}
               />
             );
           },

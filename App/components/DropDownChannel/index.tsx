@@ -31,7 +31,7 @@ const DropDownChannel = ({
   return (
     <FlatList
       data={scheduleList}
-      keyExtractor={(element) => element.id.toString()}
+      keyExtractor={(item) => item.id.toString()}
       ListEmptyComponent={<NotFound typeName="Channels" />}
       renderItem={({item}) => renderChannelList(item)}
     />
