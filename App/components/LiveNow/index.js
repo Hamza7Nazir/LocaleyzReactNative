@@ -5,19 +5,22 @@ import RenderLive from '../RenderLive';
 
 const LiveNowComponent = ({
   onPress,
-  data,
+  videos,
   channelName,
   emptyMessage,
   loading,
   thumbImage,
 }) => {
-  return loading ? (
-    <LoadingSpinner />
-  ) : !data.length ? (
-    <NotFound typeName={emptyMessage} />
-  ) : (
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+  if (!videos.length) {
+    return <NotFound typeName={emptyMessage} />;
+  }
+
+  return (
     <RenderLive
-      data={data}
+      data={videos}
       thumbImage={thumbImage}
       channelName={channelName}
       onPress={onPress}

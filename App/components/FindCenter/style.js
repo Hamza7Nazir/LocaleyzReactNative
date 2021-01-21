@@ -1,39 +1,31 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from '../../constants';
+
 export default StyleSheet.create({
   parentStyle: {
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal: 15,
+    marginHorizontal: 15, // will be kept same for all components
     marginBottom: 35,
   },
-  unselectedImageStyle: {
-    borderColor: Colors.lightGrey,
+  imageStyle: {
+    borderColor: '#34b7eb',
     borderRadius: 45,
     borderWidth: 2,
     height: 50,
     width: 50,
   },
-  selectedImageStyle: {
-    borderColor: Colors.lightBlue,
-    borderRadius: 45,
-    borderWidth: 3,
-    height: 50,
-    width: 50,
-  },
-
   viewImageStyle: {
     flexDirection: 'row',
-    marginRight: 10,
+    marginRight: 20,
   },
   iconStyle: {
-    color: Colors.lightBlue,
+    color: '#34b7eb',
     fontSize: 20,
   },
   touchableParentStyle: {
     alignItems: 'center',
-    borderColor: Colors.lightBlue,
+    borderColor: '#34b7eb',
     borderRadius: 30,
     borderWidth: 1,
     flexDirection: 'row',
@@ -42,7 +34,7 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
   },
   textStyle: {
-    color: Colors.lightBlue,
+    color: '#34b7eb',
     fontSize: 20,
     fontFamily: 'Iowan Old Style',
   },

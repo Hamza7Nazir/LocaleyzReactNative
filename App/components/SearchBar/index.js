@@ -3,7 +3,7 @@ import {View, TextInput} from 'react-native';
 import style from './style';
 import FontTelloIcon from '../../components/FontTelloIcon';
 
-const SearchBar = ({text, setText}) => {
+const SearchBar = () => {
   return (
     <View style={style.ViewStyle}>
       <FontTelloIcon
@@ -15,10 +15,6 @@ const SearchBar = ({text, setText}) => {
       <TextInput
         style={style.inputStyle}
         placeholder="Search by name, city or state"
-        onChangeText={(val) => {
-          setText(val);
-        }}
-        value={text}
       />
     </View>
   );

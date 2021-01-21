@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import FontTelloIcon from '../FontTelloIcon';
+import FontTelloIcon from '../../components/FontTelloIcon';
 import style from './style';
 const Heading = ({iconName, headingName}) => {
   return (
